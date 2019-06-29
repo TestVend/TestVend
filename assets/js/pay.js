@@ -270,7 +270,7 @@ window.addEventListener(
     var data
       data = JSON.parse(event.data)
       if (data["status_code"]==200) {
-          console.log(data["response"]["Journal"])
+          console.log(data["response"]["Journal"]);
       }
     console.log(data)
   },
