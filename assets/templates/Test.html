@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+ <title>Online POS</title>
+ <meta charset="utf-8">
+</head>
+<script src="https://vsdc.staging.vms.frcs.org.fj/onlinepos/v1/taxcore.min.js"></script>
+<body>
+ <h1>Online POS</h1>
+ <label for="invoiceRequest">Invoice request json</label>
+ <textarea id="invoiceRequest" cols="100" rows="30" style="display:block"></textarea>
+ <label for="taxcore_sign_element">Send Invoice Request:</label>
+ <!--TaxCore HTML element-->
+ <button id="taxcore_sign_element"
+ data-taxcore-vsdc-url="https://vsdc.staging.vms.frcs.org.fj/"
+ data-taxcore-input-id="invoiceRequest"
+ data-taxcore-output-id="results"
+ data-taxcore-invoice-request=""
+ data-taxcore-debug="true"
+ data-taxcore-signed-invoice-response="">Sign Invoice</button>
+ <label for="results">Received Signed Invoice:</label>
+ <textarea readonly id="results" cols="100" rows="30"></textarea>
+ <!-- TAXCORE.JS -->
+<script src="https://vsdc.staging.vms.frcs.org.fj/onlinepos/v1/taxcore.min.js"></script>
+ <!-- Custom script at Online POS -->
+ <script>
+ document.getElementById("invoiceRequest").innerHTML =
+ JSON.stringify(CreateExampleInvoiceRequest(), undefined, 4);
+
+document.getElementById("taxcore_sign_element").dataset.taxcoreInvoiceRequest =
+ JSON.stringify(CreateExampleInvoiceRequest());
+
+// Listen to messages from TaxCore
+ window.onmessage = function (e) {
+ console.log(e.data);
+ }
+ function CreateExampleInvoiceRequest() {
+ var invoiceRequest = {
+ "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
+ "Cashier": "Marie",
+ "BD": 8902798054,
+ "IT": "Normal",
+ "TT": "Sale",
+ "PaymentType": "Cash",
+ "InvoiceNumber": "F58BZUBG-T5UX48AJ-a1",
+ "PAC": "YQS4AR",
+ "Options": {
+ "OmitTextualRepresentation": 0,
+ "OmitQRCodeGen": 0
+ },
+ "Items": [
+ {
+ "Name": "Moon Mug",
+ "Quantity": 1,
+ "Labels": [
+ "A"
+ ],
+"TotalAmount": 25.90
+ }
+ ]
+ };
+ return invoiceRequest;
+ }
+ </script>
+</body>
+</html>
