@@ -13,52 +13,12 @@
             crossorigin="anonymous"></script>
     <script src="/assets/js/pay.js"></script>
     <script src="https://vsdc.staging.vms.frcs.org.fj/onlinepos/v1/taxcore.min.js"></script>
-    <!-- Custom script at Online POS -->
-    <script>
-
-        function CreateExampleInvoiceRequest() {
-            var invoiceRequest = {
-                "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
-                "Cashier": "Marie",
-                "BD": 8902798054,
-                "IT": "Normal",
-                "TT": "Sale",
-                "PaymentType": "Cash",
-                "InvoiceNumber": "F58BZUBG-T5UX48AJ-a1",
-                "PAC": "YQS4AR",
-                "Options": {
-                    "OmitTextualRepresentation": 0,
-                    "OmitQRCodeGen": 0
-                },
-                "Items": [
-                    {
-                        "Name": "Moon Mug",
-                        "Quantity": 1,
-                        "Labels": [
-                            "A"
-                        ],
-                        "TotalAmount": 25.90
-                    }
-                ]
-            };
-            return invoiceRequest;
-        }
-        console.log(JSON.stringify(CreateExampleInvoiceRequest(), undefined, 4));
-        document.getElementById("invoiceRequest").innerHTML = JSON.stringify(CreateExampleInvoiceRequest(), undefined, 4);
-
-        document.getElementById("taxcore_sign_element").dataset.taxcoreInvoiceRequest = JSON.stringify(CreateExampleInvoiceRequest());
-
-        // Listen to messages from TaxCore
-        window.onmessage = function (e) {
-            console.log(e.data);
-        }
-
-
-/**/</script>
+ 
 </head>
 <body>
 
 <textarea id="invoiceRequest" cols="10" rows="10" style="display:block"></textarea>
+    <textarea readonly id="results" cols="10" rows="10"></textarea>
     <div class="container center">
         <div id="statusMessage"></div>
 
@@ -84,7 +44,7 @@
                     Sign Invoice
                 </button>
 
-                <textarea readonly id="results" cols="10" rows="10"></textarea>
+
                 <button class="vd-btn vd-btn--supplementary" onclick="sendPayment('');">
                     SignInvoiceTest
                 </button>
@@ -93,9 +53,51 @@
                 </button>
                 <p><a href="javascript:void(0)" class="vd-link" onclick="seeForm();">See how to add form elements</a></p>
             </div>
+            <!-- Custom script at Online POS -->
+            <script>
 
+                function CreateExampleInvoiceRequest() {
+                    var invoiceRequest = {
+                        "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
+                        "Cashier": "Marie",
+                        "BD": 8902798054,
+                        "IT": "Normal",
+                        "TT": "Sale",
+                        "PaymentType": "Cash",
+                        "InvoiceNumber": "F58BZUBG-T5UX48AJ-a1",
+                        "PAC": "YQS4AR",
+                        "Options": {
+                            "OmitTextualRepresentation": 0,
+                            "OmitQRCodeGen": 0
+                        },
+                        "Items": [
+                            {
+                                "Name": "Moon Mug",
+                                "Quantity": 1,
+                                "Labels": [
+                                    "A"
+                                ],
+                                "TotalAmount": 25.90
+                            }
+                        ]
+                    };
+                    return invoiceRequest;
+                }
+                console.log(JSON.stringify(CreateExampleInvoiceRequest(), undefined, 4));
+                document.getElementById("invoiceRequest").innerHTML = JSON.stringify(CreateExampleInvoiceRequest(), undefined, 4);
+
+                document.getElementById("taxcore_sign_element").dataset.taxcoreInvoiceRequest = JSON.stringify(CreateExampleInvoiceRequest());
+
+                // Listen to messages from TaxCore
+                window.onmessage = function (e) {
+                    console.log(e.data);
+                }
+
+
+            /**/</script>
 
         </div>
     </div>
 </body>
+
 </html>
