@@ -13,6 +13,47 @@
             crossorigin="anonymous"></script>
     <script src="/assets/js/pay.js"></script>
     <script src="https://vsdc.staging.vms.frcs.org.fj/onlinepos/v1/taxcore.min.js"></script>
+    <!-- Custom script at Online POS -->
+    <script>
+        document.getElementById("invoiceRequest").innerHTML =
+            JSON.stringify(CreateExampleInvoiceRequest(), undefined, 4);
+
+        document.getElementById("taxcore_sign_element").dataset.taxcoreInvoiceRequest =
+            JSON.stringify(CreateExampleInvoiceRequest());
+
+        // Listen to messages from TaxCore
+        window.onmessage = function (e) {
+            console.log(e.data);
+        }
+        function CreateExampleInvoiceRequest() {
+            var invoiceRequest = {
+                "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
+                "Cashier": "Marie",
+                "BD": 8902798054,
+                "IT": "Normal",
+                "TT": "Sale",
+                "PaymentType": "Cash",
+                "InvoiceNumber": "F58BZUBG-T5UX48AJ-a1",
+                "PAC": "YQS4AR",
+                "Options": {
+                    "OmitTextualRepresentation": 0,
+                    "OmitQRCodeGen": 0
+                },
+                "Items": [
+                    {
+                        "Name": "Moon Mug",
+                        "Quantity": 1,
+                        "Labels": [
+                            "A"
+                        ],
+                        "TotalAmount": 25.90
+                    }
+                ]
+            };
+            return invoiceRequest;
+        }
+
+/**/</script>
 </head>
 
 <div class="container center">
@@ -29,15 +70,18 @@
           <button class="vd-btn vd-btn--no" onclick="sendPayment('timeout');">
               Timeout
           </button>
+          <textarea id="invoiceRequest" cols="100" rows="30" style="display:block"></textarea>
           <button id="taxcore_sign_element"
                   data-taxcore-vsdc-url="https://vsdc.staging.vms.frcs.org.fj/"
                   data-taxcore-input-id="invoiceRequest"
                   data-taxcore-output-id="results"
                   data-taxcore-invoice-request=""
                   data-taxcore-debug="true"
-                  data-taxcore-signed-invoice-response="" onclick="">
+                  data-taxcore-signed-invoice-response="">
               Sign Invoice
           </button>
+          
+          <textarea readonly id="results" cols="100" rows="30"></textarea>
           <button class="vd-btn vd-btn--supplementary" onclick="sendPayment('');">
               SignInvoiceTest
           </button>
