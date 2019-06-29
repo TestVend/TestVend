@@ -15,15 +15,8 @@
     <script src="https://vsdc.staging.vms.frcs.org.fj/onlinepos/v1/taxcore.min.js"></script>
     <!-- Custom script at Online POS -->
     <script>
-        document.getElementById("invoiceRequest").innerHTML = JSON.stringify(CreateExampleInvoiceRequest(), undefined, 4);
 
-        document.getElementById("taxcore_sign_element").dataset.taxcoreInvoiceRequest = JSON.stringify(CreateExampleInvoiceRequest());
-
-        // Listen to messages from TaxCore
-        window.onmessage = function (e) {
-            console.log(e.data);
-        }
-        function CreateExampleInvoiceRequest() {
+    function CreateExampleInvoiceRequest() {
             var invoiceRequest = {
                 "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
                 "Cashier": "Marie",
@@ -50,6 +43,16 @@
             };
             return invoiceRequest;
         }
+
+        document.getElementById("invoiceRequest").innerHTML = JSON.stringify(CreateExampleInvoiceRequest(), undefined, 4);
+
+        document.getElementById("taxcore_sign_element").dataset.taxcoreInvoiceRequest = JSON.stringify(CreateExampleInvoiceRequest());
+
+        // Listen to messages from TaxCore
+        window.onmessage = function (e) {
+            console.log(e.data);
+        }
+        
 
 /**/</script>
 </head>
