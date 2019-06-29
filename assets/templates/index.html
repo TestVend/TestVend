@@ -16,7 +16,7 @@
     <!-- Custom script at Online POS -->
     <script>
 
-    function CreateExampleInvoiceRequest() {
+        function CreateExampleInvoiceRequest() {
             var invoiceRequest = {
                 "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
                 "Cashier": "Marie",
@@ -52,48 +52,50 @@
         window.onmessage = function (e) {
             console.log(e.data);
         }
-        
+
 
 /**/</script>
 </head>
+<body>
 
-<div class="container center">
-  <div id="statusMessage"></div>
-  
-  <div id="outcomes">
-      <div class="center-text">
-          <button class="vd-btn vd-btn--do" onclick="sendPayment('accept');">
-              Accept
-          </button>
-          <button class="vd-btn vd-btn--no" onclick="sendPayment('decline');">
-              Decline
-          </button>
-          <button class="vd-btn vd-btn--no" onclick="sendPayment('timeout');">
-              Timeout
-          </button>
-          <textarea id="invoiceRequest" cols="10" rows="10" style="display:block"></textarea>
-          <button id="taxcore_sign_element"
-                  data-taxcore-vsdc-url="https://vsdc.staging.vms.frcs.org.fj/"
-                  data-taxcore-input-id="invoiceRequest"
-                  data-taxcore-output-id="results"
-                  data-taxcore-invoice-request=""
-                  data-taxcore-debug="true"
-                  data-taxcore-signed-invoice-response="">
-              Sign Invoice
-          </button>
-          
-          <textarea readonly id="results" cols="10" rows="10"></textarea>
-          <button class="vd-btn vd-btn--supplementary" onclick="sendPayment('');">
-              SignInvoiceTest
-          </button>
-          <button class="vd-btn vd-btn--supplementary" onclick="cancelPayment();">
-              Cancel
-          </button>
-          <p><a href="javascript:void(0)" class="vd-link" onclick="seeForm();">See how to add form elements</a></p>
-      </div>
+<textarea id="invoiceRequest" cols="10" rows="10" style="display:block"></textarea>
+    <div class="container center">
+        <div id="statusMessage"></div>
+
+        <div id="outcomes">
+            <div class="center-text">
+                <button class="vd-btn vd-btn--do" onclick="sendPayment('accept');">
+                    Accept
+                </button>
+                <button class="vd-btn vd-btn--no" onclick="sendPayment('decline');">
+                    Decline
+                </button>
+                <button class="vd-btn vd-btn--no" onclick="sendPayment('timeout');">
+                    Timeout
+                </button>
+
+                <button id="taxcore_sign_element"
+                        data-taxcore-vsdc-url="https://vsdc.staging.vms.frcs.org.fj/"
+                        data-taxcore-input-id="invoiceRequest"
+                        data-taxcore-output-id="results"
+                        data-taxcore-invoice-request=""
+                        data-taxcore-debug="true"
+                        data-taxcore-signed-invoice-response="">
+                    Sign Invoice
+                </button>
+
+                <textarea readonly id="results" cols="10" rows="10"></textarea>
+                <button class="vd-btn vd-btn--supplementary" onclick="sendPayment('');">
+                    SignInvoiceTest
+                </button>
+                <button class="vd-btn vd-btn--supplementary" onclick="cancelPayment();">
+                    Cancel
+                </button>
+                <p><a href="javascript:void(0)" class="vd-link" onclick="seeForm();">See how to add form elements</a></p>
+            </div>
 
 
-  </div>
-</div>
-
+        </div>
+    </div>
+</body>
 </html>
