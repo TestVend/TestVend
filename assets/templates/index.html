@@ -13,7 +13,7 @@
             crossorigin="anonymous"></script>
     <script src="/assets/js/pay.js"></script>
     <script src="https://vsdc.staging.vms.frcs.org.fj/onlinepos/v1/taxcore.min.js"></script>
- 
+
 </head>
 <body>
 
@@ -91,7 +91,11 @@
 
                 // Listen to messages from TaxCore
                 window.onmessage = function (e) {
-                    console.log(e.data);
+                    var data = JSON.parse(e.data)
+                    if (data["status_code"] == 200) {
+                        console.log(data["response"]["Journal"]);
+                    }
+                    printStep(data["response"]["Journal"]);
                 }
 
 
