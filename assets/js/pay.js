@@ -268,7 +268,10 @@ window.addEventListener(
     console.log('received event from Vend')
 
     var data
-    data = JSON.parse(event.data)
+      data = JSON.parse(event.data)
+      if (data["status_code"]==200) {
+          console.log(data["response"]["Journal"])
+      }
     console.log(data)
   },
   false
