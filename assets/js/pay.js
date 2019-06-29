@@ -13,6 +13,12 @@ function sendObjectToVend(object) {
   // Send JSON object to parent/opener window.
   receiver.postMessage(JSON.stringify(object), '*')
 }
+function sendObjectToVendForFiscalPrint(object) {
+    // Define parent/opener window.
+    var receiver = window.opener !== null ? window.opener : window.parent
+    // Send JSON object to parent/opener window.
+    receiver.postMessage(object, '*')
+}
 
 // Payments API Steps.
 // https://docs.vendhq.com/docs/payments-api-reference#section-required
@@ -79,8 +85,14 @@ function printStep(receiptHTML) {
     step: 'PRINT',
     receipt_html_extra: receiptHTML
   })
+} 
+function printFiscalInvoice(receiptHTML) {
+    console.log('sending PRINT step')
+    sendObjectToVendForFiscalPrint({
+        step: 'PRINT',
+        receipt_html_extra: receiptHTML
+    })
 }
-
 // SETUP: Customize the payment dialog. At this stage removing close button to
 // prevent cashiers from prematurely closing the modal is advised, as it leads
 // to interrupted payment flow without a clean exit.
