@@ -15,11 +15,9 @@
     <script src="https://vsdc.staging.vms.frcs.org.fj/onlinepos/v1/taxcore.min.js"></script>
     <!-- Custom script at Online POS -->
     <script>
-        document.getElementById("invoiceRequest").innerHTML =
-            JSON.stringify(CreateExampleInvoiceRequest(), undefined, 4);
+        document.getElementById("invoiceRequest").innerHTML = JSON.stringify(CreateExampleInvoiceRequest(), undefined, 4);
 
-        document.getElementById("taxcore_sign_element").dataset.taxcoreInvoiceRequest =
-            JSON.stringify(CreateExampleInvoiceRequest());
+        document.getElementById("taxcore_sign_element").dataset.taxcoreInvoiceRequest = JSON.stringify(CreateExampleInvoiceRequest());
 
         // Listen to messages from TaxCore
         window.onmessage = function (e) {
