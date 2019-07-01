@@ -17,7 +17,7 @@ function sendObjectToVendForFiscalPrint(object) {
     // Define parent/opener window.
     var receiver = window.opener !== null ? window.opener : window.parent
     // Send JSON object to parent/opener window.
-    receiver.postMessage(objJSON.stringify(object)ect, '*')
+    receiver.postMessage(objJSON.stringify(object), '*')
 }
 
 // Payments API Steps.
