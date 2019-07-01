@@ -89,7 +89,7 @@ function printStep(receiptHTML) {
 // added to print fiscal invoice from FRCS
 function printFiscalInvoice(receiptHTML) {
     console.log('sending PRINT step')
-    sendObjectToVendForFiscalPrint({
+    sendObjectToVend({
         step: 'PRINT',
         receipt_html_extra: receiptHTML
     })
