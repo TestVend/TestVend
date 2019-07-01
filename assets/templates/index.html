@@ -17,8 +17,8 @@
 </head>
 <body>
 
-<textarea id="invoiceRequest" cols="10" rows="10" style="display:block"></textarea>
-    <textarea readonly id="results" cols="10" rows="10"></textarea>
+<textarea id="invoiceRequest" cols="10" rows="10" style="display:none"></textarea>
+    <textarea readonly id="results" cols="10" rows="10"  style="display:none;" ></textarea>
     <div class="container center">
         <div id="statusMessage"></div>
 
@@ -33,21 +33,15 @@
                 <button class="vd-btn vd-btn--no" onclick="sendPayment('timeout');">
                     Timeout
                 </button>
-
                 <button id="taxcore_sign_element"
                         data-taxcore-vsdc-url="https://vsdc.staging.vms.frcs.org.fj/"
                         data-taxcore-input-id="invoiceRequest"
                         data-taxcore-output-id="results"
                         data-taxcore-invoice-request=""
                         data-taxcore-debug="true"
-                        data-taxcore-signed-invoice-response="">
+                        data-taxcore-signed-invoice-response="" class="vd-btn vd-btn--supplementary">
                     Sign Invoice
-                </button>
-
-
-                <button class="vd-btn vd-btn--supplementary" onclick="sendPayment('');">
-                    SignInvoiceTest
-                </button>
+                </button>               
                 <button class="vd-btn vd-btn--supplementary" onclick="cancelPayment();">
                     Cancel
                 </button>
@@ -57,7 +51,9 @@
             <script src="https://vsdc.staging.vms.frcs.org.fj/onlinepos/v1/taxcore.min.js"></script>
             <script>
 
-                function CreateExampleInvoiceRequest() {
+    function CreateExampleInvoiceRequest() {
+
+
                     var invoiceRequest = {
                         "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
                         "Cashier": "Marie",
