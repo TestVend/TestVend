@@ -17,7 +17,7 @@ function sendObjectToVendForFiscalPrint(object) {
     // Define parent/opener window.
     var receiver = window.opener !== null ? window.opener : window.parent
     // Send JSON object to parent/opener window.
-    receiver.postMessage(object, '*')
+    receiver.postMessage(objJSON.stringify(object)ect, '*')
 }
 
 // Payments API Steps.
@@ -86,6 +86,7 @@ function printStep(receiptHTML) {
     receipt_html_extra: receiptHTML
   })
 } 
+// added to print fiscal invoice from FRCS
 function printFiscalInvoice(receiptHTML) {
     console.log('sending PRINT step')
     sendObjectToVendForFiscalPrint({
@@ -189,6 +190,27 @@ function checkResponse(response) {
       setTimeout($('#outcomes').show(), 4000)
       break
   }
+}
+
+
+//function same as sendPayment()
+
+function AddItemsForSignInvoice() {
+
+    // Get the payment context from the URL query string.
+    var result = {}
+    result = getURLParameters()
+    // If we did not at least two query params from Vend something is wrong.
+    if (Object.keys(result).length < 2) {
+        console.log('did not get at least two query results')
+        $('#statusMessage').empty()
+        $.get('../assets/templates/failed.html', function (data) {
+            $('#statusMessage').append(data)
+        })
+        setTimeout(exitStep(), 4000)
+    }
+    var data = {}
+
 }
 
 // sendPayment sends payment context to the gateway to begin processing the
