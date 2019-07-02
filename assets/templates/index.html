@@ -67,7 +67,7 @@
         setTimeout(exitStep(), 4000)
         }
         
-        console.log(dataStep);
+        dataStep();
             myData = {
                 "step": "ACCEPT",
                 "name": "payment",
@@ -78,7 +78,7 @@
         parent.postMessage(JSON.stringify(myData), vend_url);
         debugger;
         console.log(myData);
-         console.log(dataStep);
+
                     var invoiceRequest = {
                         "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
                         "Cashier": "Marie",
