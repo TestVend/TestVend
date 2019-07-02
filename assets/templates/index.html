@@ -68,6 +68,19 @@
         }
         
         console.log(dataStep());
+
+
+         
+            myData = {
+                "step": "DATA",
+                "name": "payment",
+                "success": true,
+                "print": false,
+        }
+
+        parent.postMessage(JSON.stringify(myData), vend_url);
+        debugger;
+        cinsole.log(myData);
         dataStep();
                     var invoiceRequest = {
                         "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
