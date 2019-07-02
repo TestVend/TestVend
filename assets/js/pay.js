@@ -310,8 +310,8 @@ window.addEventListener(
             for (var items in data.register_sale.line_items) {
                 var productitem =
                 {
-                    "Name": item.product_id,
-                    "Quantity": item.quantity,
+                    "Name": items.product_id,
+                    "Quantity": items.quantity,
                     "Labels": [
                         "A"
                     ],
