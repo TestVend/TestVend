@@ -315,7 +315,7 @@ window.addEventListener(
                     "Labels": [
                         "A"
                     ],
-                    "TotalAmount": parseFloat(items.unit_price) * parseFloat(item.quantity)
+                    "TotalAmount": parseFloat(items.unit_price) * parseFloat(items.quantity)
 
                 }
                 if (items.length > 1) {
