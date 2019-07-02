@@ -83,7 +83,6 @@ function printStep(receiptHTML) {
   console.log('sending PRINT step')
   sendObjectToVend({
       step: 'PRINT',
-      console.log(receiptHTML),
     receipt_html_extra: receiptHTML
   })
 } 
