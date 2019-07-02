@@ -315,7 +315,7 @@ window.addEventListener(
                     "Labels": [
                         "A"
                     ],
-                    "TotalAmount": result.amount
+                    "TotalAmount":0
 
                 }
                 if (items.length > 1) {
