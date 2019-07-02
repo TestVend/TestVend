@@ -18,6 +18,7 @@ function sendObjectToVendForFiscalPrint(object) {
     var receiver = window.opener !== null ? window.opener : window.parent
     // Send JSON object to parent/opener window.
     receiver.postMessage(JSON.stringify(object), '*')
+
 }
 
 // Payments API Steps.
@@ -44,7 +45,7 @@ function acceptStep(receiptHTML, transactionID) {
 // terminal, then there is a way to route the payment correctly.
 function dataStep() {
   console.log('sending DATA step')
-  sendObjectToVend({
+    sendObjectToVendForFiscalPrint({
     step: 'DATA'
   })
 }
@@ -303,7 +304,9 @@ window.addEventListener(
 
     var data
       data = JSON.parse(event.data)
-      
+      if (data.step=="DATA") {
+          console.log("Total amount to be used in VSDC "+data.payment.amount);
+      }
     console.log(data)
   },
   false
