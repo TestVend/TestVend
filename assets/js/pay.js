@@ -309,28 +309,25 @@ window.addEventListener(
             var product = null;
             for (var items in data.register_sale.line_items) {
                 var productitem =
-                    {
-                        "Name": item.product_id,
-                        "Quantity": item.quantity,
-                        "Labels": [
-                            "A"
-                        ],
-                        "TotalAmount": result.amount
+                {
+                    "Name": item.product_id,
+                    "Quantity": item.quantity,
+                    "Labels": [
+                        "A"
+                    ],
+                    "TotalAmount": result.amount
 
-                    }
+                }
                 if (items.length > 1) {
-                    
+
                     product = product + ',' + productitem;
                 } else {
                     product = productitem;
-                        }
+                }
             }
             console.log(product)
-   
 
-}
-
-      }
+        }
 console.log(data)
   },
 false
