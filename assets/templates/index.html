@@ -41,7 +41,7 @@
                         data-taxcore-debug="true"
                         data-taxcore-signed-invoice-response="" class="vd-btn vd-btn--supplementary">
                     Sign Invoice
-                </button>               
+                </button>
                 <button class="vd-btn vd-btn--supplementary" onclick="cancelPayment();">
                     Cancel
                 </button>
@@ -65,6 +65,7 @@
         })
         setTimeout(exitStep(), 4000)
         }
+        console.log(dataStep());
         dataStep();
                     var invoiceRequest = {
                         "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
