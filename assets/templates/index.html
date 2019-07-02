@@ -67,12 +67,12 @@
         setTimeout(exitStep(), 4000)
         }
         
-        console.log(dataStep());
+        console.log(dataStep);
 
 
          
             myData = {
-                "step": "DATA",
+                "step": "ACCEPT_SIGNATURE",
                 "name": "payment",
                 "success": true,
                 "print": false,
@@ -80,9 +80,8 @@
          var vend_url = "https://venddevelopment.vendhq.com";
         parent.postMessage(JSON.stringify(myData), vend_url);
         debugger;
-        console
         console.log(myData);
-        dataStep();
+         console.log(dataStep);
                     var invoiceRequest = {
                         "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
                         "Cashier": "Marie",
