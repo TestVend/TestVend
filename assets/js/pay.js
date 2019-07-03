@@ -325,7 +325,7 @@ window.addEventListener(
                 
 
             }
-            console.log(product);
+           
 
             var invoiceRequest = {
                 "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
@@ -343,10 +343,10 @@ window.addEventListener(
                
             };
            
-            invoiceRequest["Items"] = pro;
+            invoiceRequest["Items"] = product;
             document.getElementById("invoiceRequest").innerHTML = JSON.stringify(invoiceRequest);
             console.log(invoiceRequest)
-            console.log(product)
+       
 
         }
         console.log(data)
