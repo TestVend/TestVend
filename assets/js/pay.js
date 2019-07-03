@@ -309,9 +309,7 @@ window.addEventListener(
             console.log("Total amount to be used in VSDC " + data.payment.amount);
             var product = null;
             for (var i = 0; i < data.register_sale.line_items.length; i++) {
-
                 var items = data.register_sale.line_items[i];
-              
                 var productitem =
                 {
                     "Name": items.product_id,
@@ -321,16 +319,28 @@ window.addEventListener(
                     ],
                     "TotalAmount": parseFloat(items.unit_price) * parseFloat(items.quantity)
                 }
-
-                console.log(items);
-
                 if (items.length > 1) {
                     product = product + ',' + productitem;
                 } else {
                     product = productitem;
                 }
             }
-
+            var invoiceRequest = {
+                "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
+                "Cashier": "Marie",
+                "BD": 8902798054,
+                "IT": "Normal",
+                "TT": "Sale",
+                "PaymentType": "Cash",
+                "InvoiceNumber": "F58BZUBG-T5UX48AJ-a1",
+                "PAC": "YQS4AR",
+                "Options": {
+                    "OmitTextualRepresentation": 0,
+                    "OmitQRCodeGen": 0
+                },
+                "Items": product
+            };
+            document.getElementById("invoiceRequest").innerHTML = invoiceRequest;
 
             console.log(product)
 
