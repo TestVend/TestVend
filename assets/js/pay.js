@@ -305,10 +305,10 @@ window.addEventListener(
         var data
         data = JSON.parse(event.data)
         console.log(data);
-        if (data.step == "DATA") {
-            console.log("Total amount to be used in VSDC " + data.payment.amount);
-            var product = null;
-            for (var i = 0; i < data.register_sale.line_items.length; i++) {
+        if (data.step == "DATA") {            
+            var product = [];
+            var pro=null
+            for (var i = 1; i <= data.register_sale.line_items.length; i++) {
                 var items = data.register_sale.line_items[i];
                 console.log(data.register_sale.line_items.length);
                 var productitem =
@@ -320,13 +320,23 @@ window.addEventListener(
                     ],
                     "TotalAmount": parseFloat(items.unit_price) * parseFloat(items.quantity)
                 }
-                if (items.length > 1) {
-                    product = product + ',' + productitem;
-                } else {
-                    product =productitem;
+                if (i == data.register_sale.line_items.length) {
+                    pro = pro + productitem;
                 }
+                else {
+                    pro = pro + productitem + ",";
+                }
+                //if (data.register_sale.line_items.length > 1) {
+                //    if (i < data.register_sale.line_items.length) {
+                //        pro = pro+ productitem+",";
+                //    } 
+                //    product = product + ',' + productitem;
+                //} else {
+                //    product =productitem;
+                //}
 
             }
+            console.log(pro);
 
             var invoiceRequest = {
                 "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
@@ -343,8 +353,8 @@ window.addEventListener(
                 },
                
             };
-            var p = [];
-            invoiceRequest["Items"] = product;
+
+            invoiceRequest["Items"] = pro;
             document.getElementById("invoiceRequest").innerHTML = JSON.stringify(invoiceRequest);
             console.log(invoiceRequest)
             console.log(product)
