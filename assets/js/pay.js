@@ -307,7 +307,7 @@ window.addEventListener(
         console.log(data);
         if (data.step == "DATA") {            
             var product = [];
-            var pro=null
+            var pro = '';
             for (var i = 1; i <= data.register_sale.line_items.length; i++) {
                 var items = data.register_sale.line_items[i-1];
                 console.log(items);
@@ -337,7 +337,7 @@ window.addEventListener(
 
             }
             console.log(pro);
-
+            product = [pro];
             var invoiceRequest = {
                 "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
                 "Cashier": "Marie",
