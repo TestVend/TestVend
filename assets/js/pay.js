@@ -310,9 +310,7 @@ window.addEventListener(
             var product = null;
             for (var i = 0; i < data.register_sale.line_items.length; i++) {
                 console.log(data.register_sale.line_items.length);
-            }
-
-            for (var items in data.register_sale.line_items) {
+                var items = data.register_sale.line_items[i];
                 console.log(items);
                 var productitem =
                 {
@@ -324,6 +322,11 @@ window.addEventListener(
                     "TotalAmount": parseFloat(items.unit_price) * parseFloat(items.quantity)
 
                 }
+            }
+
+            for (var items in data.register_sale.line_items) {
+                console.log(items);
+                
                 if (items.length > 1) {
 
                     product = product + ',' + productitem;
