@@ -109,55 +109,42 @@ function setupStep() {
 }
 
 function GetProductName(productId) {
-
-    var options = {
-        method: 'POST',
-        url: 'https://venddevelopment.vendhq.com/api/1.0/token',
-        headers:
-        {
-            'postman-token': 'b49cedd0-eb6a-5d2c-8a41-8756afe36c5f',
-            'cache-control': 'no-cache',
-            'content-type': 'application/x-www-form-urlencoded'
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://venddevelopment.vendhq.com/api/1.0/token",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/x-www-form-urlencoded",
         },
-        form:
-        {
-            refresh_token: 'xXwyWBeUZX0hndhEf5kiYM7iVt24KG0wqoZGLvng',
-            client_id: 'z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV',
-            client_secret: 'Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB',
-            grant_type: 'refresh_token'
+        "data": {
+            "refresh_token": "xXwyWBeUZX0hndhEf5kiYM7iVt24KG0wqoZGLvng",
+            "client_id": "z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV",
+            "client_secret": "Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB",
+            "grant_type": "refresh_token"
         }
-    };
-    var Request = require('request');
-    Request(options, function (error, response, body) {
-        if (error) throw new Error(error);
+    }
 
-        console.log(body);
+    $.ajax(settings).done(function (response) {
+        console.log(response);
 
-        var access_token = body["access_token"];
-        console.log(access_token)
-        var options = {
-            method: 'GET',
-            url: 'https://venddevelopment.vendhq.com/api/products/' + productId,
-            headers:
-            {
-                'postman-token': '34bcd834-d4f6-5fc7-a5cd-7f3dd7c1cfa0',
-                'cache-control': 'no-cache',
-                authorization: 'Bearer ' + access_token
+        var access_token = response["access_token"];
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://venddevelopment.vendhq.com/api/products/" + productId,
+            "method": "GET",
+            "headers": {
+                "authorization": "Bearer " + access_token,
             }
-        };
+        }
+        $.ajax(settings).done(function (response) {
+            console.log(response);
 
-        Request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-
-            console.log(body);
         });
 
-
     });
-
-
-
-
 
 }
 // Get query parameters from the URL. Vend includes amount, origin, and
