@@ -112,6 +112,7 @@ function GetProductName(productId) {
     var settings = {
         "async": true,
         "crossDomain": true,
+        "Access-Control-Allow-Credentials": true,
         "url": "https://venddevelopment.vendhq.com/api/1.0/token",
         "method": "POST",
         "headers": {
@@ -133,6 +134,7 @@ function GetProductName(productId) {
         var settings = {
             "async": true,
             "crossDomain": true,
+            "Access-Control-Allow-Credentials": true,
             "url": "https://venddevelopment.vendhq.com/api/products/" + productId,
             "method": "GET",
             "headers": {
