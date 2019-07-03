@@ -115,6 +115,8 @@ function GetProductName(productId) {
         "url": "https://venddevelopment.vendhq.com/api/1.0/token",
         "method": "POST",
         "headers": {
+            "Access-Control-Allow-Origin":"*",
+            "Access-Control-Allow-Credentials": true,
             "content-type": "application/x-www-form-urlencoded",
         },
         "data": {
@@ -133,10 +135,11 @@ function GetProductName(productId) {
         var settings = {
             "async": true,
             "crossDomain": true,
-            "Access-Control-Allow-Credentials": true,
             "url": "https://venddevelopment.vendhq.com/api/products/" + productId,
             "method": "GET",
             "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": true,
                 "authorization": "Bearer " + access_token,
             }
         }
