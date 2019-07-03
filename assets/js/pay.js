@@ -309,7 +309,7 @@ window.addEventListener(
             var product = [];
             var pro=null
             for (var i = 1; i <= data.register_sale.line_items.length; i++) {
-                var items = data.register_sale.line_items[i];
+                var items = data.register_sale.line_items[i-1];
                 console.log(items);
                 var productitem =
                 {
