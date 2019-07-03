@@ -320,24 +320,13 @@ window.addEventListener(
                     ],
                     "TotalAmount": parseFloat(items.unit_price) * parseFloat(items.quantity)
                 }
-                if (i == data.register_sale.line_items.length) {
-                    pro = pro + productitem;
-                }
-                else {
-                    pro = pro + productitem + ",";
-                }
-                //if (data.register_sale.line_items.length > 1) {
-                //    if (i < data.register_sale.line_items.length) {
-                //        pro = pro+ productitem+",";
-                //    } 
-                //    product = product + ',' + productitem;
-                //} else {
-                //    product =productitem;
-                //}
+               
+                    product.push(productitem);
+                
 
             }
-            console.log(pro);
-            product = [pro];
+            console.log(product);
+
             var invoiceRequest = {
                 "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
                 "Cashier": "Marie",
@@ -353,7 +342,7 @@ window.addEventListener(
                 },
                
             };
-
+           
             invoiceRequest["Items"] = pro;
             document.getElementById("invoiceRequest").innerHTML = JSON.stringify(invoiceRequest);
             console.log(invoiceRequest)
