@@ -310,7 +310,7 @@ window.addEventListener(
             var pro=null
             for (var i = 1; i <= data.register_sale.line_items.length; i++) {
                 var items = data.register_sale.line_items[i];
-                console.log(data.register_sale.line_items.length);
+                console.log(items);
                 var productitem =
                 {
                     "Name": "Moon mug",
