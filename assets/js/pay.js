@@ -340,7 +340,7 @@ window.addEventListener(
                 },
                 "Items": product
             };
-            document.getElementById("invoiceRequest").innerHTML = invoiceRequest;
+            document.getElementById("invoiceRequest").innerHTML = JSON.stringify(invoiceRequest);
 
             console.log(product)
 
