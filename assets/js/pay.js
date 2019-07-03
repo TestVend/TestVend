@@ -5,7 +5,7 @@
 
 // Handles payment flow communication to Vend via the Payments API.
 // Documentation: https://docs.vendhq.com/docs/payments-api-reference
-
+var Request = require("request");
 // Send postMessage JSON payload to the Payments API.
 function sendObjectToVend(object) {
     // Define parent/opener window.
@@ -108,6 +108,58 @@ function setupStep() {
     })
 }
 
+function GetProductName(productId) {
+
+    var options = {
+        method: 'POST',
+        url: 'https://venddevelopment.vendhq.com/api/1.0/token',
+        headers:
+        {
+            'postman-token': 'b49cedd0-eb6a-5d2c-8a41-8756afe36c5f',
+            'cache-control': 'no-cache',
+            'content-type': 'application/x-www-form-urlencoded'
+        },
+        form:
+        {
+            refresh_token: 'xXwyWBeUZX0hndhEf5kiYM7iVt24KG0wqoZGLvng',
+            client_id: 'z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV',
+            client_secret: 'Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB',
+            grant_type: 'refresh_token'
+        }
+    };
+
+    Request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        console.log(body);
+
+        var access_token = body["access_token"];
+        console.log(access_token)
+        var options = {
+            method: 'GET',
+            url: 'https://venddevelopment.vendhq.com/api/products/' + productId,
+            headers:
+            {
+                'postman-token': '34bcd834-d4f6-5fc7-a5cd-7f3dd7c1cfa0',
+                'cache-control': 'no-cache',
+                authorization: 'Bearer ' + access_token
+            }
+        };
+
+        Request(options, function (error, response, body) {
+            if (error) throw new Error(error);
+
+            console.log(body);
+        });
+
+
+    });
+
+
+
+
+
+}
 // Get query parameters from the URL. Vend includes amount, origin, and
 // register_id.
 function getURLParameters() {
@@ -310,6 +362,7 @@ window.addEventListener(
                 for (var i = 1; i <= data.register_sale.line_items.length; i++) {
                     var items = data.register_sale.line_items[i - 1];
                     console.log(items);
+                    GetProductName(items.product_id);
                     var productitem =
                     {
                         "Name": "Moon mug",
