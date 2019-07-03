@@ -320,9 +320,9 @@ window.addEventListener(
                     "TotalAmount": parseFloat(items.unit_price) * parseFloat(items.quantity)
                 }
                 if (items.length > 1) {
-                    product = product + ',' + productitem;
+                    product ="["+ product + ',' + productitem+"]";
                 } else {
-                    product = productitem;
+                    product = "["+productitem+"]";
                 }
             }
             var invoiceRequest = {
