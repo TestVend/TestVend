@@ -320,26 +320,24 @@ window.addEventListener(
                         "A"
                     ],
                     "TotalAmount": parseFloat(items.unit_price) * parseFloat(items.quantity)
-
                 }
-            }
 
-            for (var items in data.register_sale.line_items) {
                 console.log(items);
-                
-                if (items.length > 1) {
 
+                if (items.length > 1) {
                     product = product + ',' + productitem;
                 } else {
                     product = productitem;
                 }
             }
+
+
             console.log(product)
 
         }
-console.log(data)
-  },
-false
+        console.log(data)
+    },
+    false
 )
 
 function showClose() {
