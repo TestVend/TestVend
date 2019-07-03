@@ -310,6 +310,7 @@ window.addEventListener(
             var product = null;
             for (var i = 0; i < data.register_sale.line_items.length; i++) {
                 var items = data.register_sale.line_items[i];
+                console.log(data.register_sale.line_items.length);
                 var productitem =
                 {
                     "Name": "Moon mug",
@@ -342,6 +343,7 @@ window.addEventListener(
                 },
                
             };
+            var p = [];
             invoiceRequest["Items"] = product;
             document.getElementById("invoiceRequest").innerHTML = JSON.stringify(invoiceRequest);
             console.log(invoiceRequest)
