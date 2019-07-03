@@ -127,7 +127,7 @@ function GetProductName(productId) {
             grant_type: 'refresh_token'
         }
     };
-
+    var Request = require('request');
     Request(options, function (error, response, body) {
         if (error) throw new Error(error);
 
