@@ -340,7 +340,7 @@ window.addEventListener(
                     "OmitTextualRepresentation": 0,
                     "OmitQRCodeGen": 0
                 },
-                "Items": "["+product+"]"
+                "Items": "[" + JSON.stringify(product)+ "]"
             };
             document.getElementById("invoiceRequest").innerHTML = JSON.stringify(invoiceRequest);
 
