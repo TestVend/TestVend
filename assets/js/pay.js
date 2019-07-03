@@ -304,52 +304,41 @@ window.addEventListener(
 
         var data
         data = JSON.parse(event.data)
-        console.log(data);
-        if (data.step == "DATA") {            
-            var product = [];
-            var pro = '';
-            for (var i = 1; i <= data.register_sale.line_items.length; i++) {
-                var items = data.register_sale.line_items[i-1];
-                console.log(items);
-                var productitem =
-                {
-                    "Name": "Moon mug",
-                    "Quantity": items.quantity,
-                    "Labels": [
-                        "A"
-                    ],
-                    "TotalAmount": parseFloat(items.unit_price) * parseFloat(items.quantity)
-                }
-               
+        if (data.step == "DATA") {
+            if (data.success == true) {
+                var product = [];
+                for (var i = 1; i <= data.register_sale.line_items.length; i++) {
+                    var items = data.register_sale.line_items[i - 1];
+                    console.log(items);
+                    var productitem =
+                    {
+                        "Name": "Moon mug",
+                        "Quantity": items.quantity,
+                        "Labels": [
+                            "A"
+                        ],
+                        "TotalAmount": parseFloat(items.unit_price) * parseFloat(items.quantity)
+                    }
                     product.push(productitem);
-                
-
+                }
+                var invoiceRequest = {
+                    "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
+                    "Cashier": "Marie",
+                    "BD": 8902798054,
+                    "IT": "Normal",
+                    "TT": "Sale",
+                    "PaymentType": "Cash",
+                    "InvoiceNumber": "F58BZUBG-T5UX48AJ-a1",
+                    "PAC": "YQS4AR",
+                    "Options": {
+                        "OmitTextualRepresentation": 0,
+                        "OmitQRCodeGen": 0
+                    },
+                };
+                invoiceRequest["Items"] = product;
+                document.getElementById("invoiceRequest").innerHTML = JSON.stringify(invoiceRequest);
             }
-           
-
-            var invoiceRequest = {
-                "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
-                "Cashier": "Marie",
-                "BD": 8902798054,
-                "IT": "Normal",
-                "TT": "Sale",
-                "PaymentType": "Cash",
-                "InvoiceNumber": "F58BZUBG-T5UX48AJ-a1",
-                "PAC": "YQS4AR",
-                "Options": {
-                    "OmitTextualRepresentation": 0,
-                    "OmitQRCodeGen": 0
-                },
-               
-            };
-           
-            invoiceRequest["Items"] = product;
-            document.getElementById("invoiceRequest").innerHTML = JSON.stringify(invoiceRequest);
-            console.log(invoiceRequest)
-       
-
         }
-        console.log(data)
     },
     false
 )

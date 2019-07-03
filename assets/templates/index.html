@@ -122,8 +122,9 @@
                     var data = JSON.parse(e.data)
                     if (data["status_code"] == 200) {
                         console.log(data["response"]["Journal"]);
+                        printFiscalInvoice((data["response"]["Journal"]));
                     }
-                    printFiscalInvoice((data["response"]["Journal"]));
+                    
                 }
 
 
