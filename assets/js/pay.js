@@ -304,6 +304,7 @@ window.addEventListener(
 
         var data
         data = JSON.parse(event.data)
+        console.log(data);
         if (data.step == "DATA") {
             console.log("Total amount to be used in VSDC " + data.payment.amount);
             var product = null;

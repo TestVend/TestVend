@@ -24,15 +24,15 @@
 
         <div id="outcomes">
             <div class="center-text">
-                <button class="vd-btn vd-btn--do" onclick="sendPayment('accept');">
-                    Accept
-                </button>
-                <button class="vd-btn vd-btn--no" onclick="sendPayment('decline');">
-                    Decline
-                </button>
-                <button class="vd-btn vd-btn--no" onclick="sendPayment('timeout');">
-                    Timeout
-                </button>
+                <!--<button class="vd-btn vd-btn--do" onclick="sendPayment('accept');">
+        Accept
+    </button>
+    <button class="vd-btn vd-btn--no" onclick="sendPayment('decline');">
+        Decline
+    </button>
+    <button class="vd-btn vd-btn--no" onclick="sendPayment('timeout');">
+        Timeout-->
+                <!--</button>-->
                 <button id="taxcore_sign_element"
                         data-taxcore-vsdc-url="https://vsdc.staging.vms.frcs.org.fj/"
                         data-taxcore-input-id="invoiceRequest"
@@ -42,10 +42,17 @@
                         data-taxcore-signed-invoice-response="" class="vd-btn vd-btn--supplementary">
                     Sign Invoice
                 </button>
+                <!--<button class="vd-btn vd-btn--no" onclick="sendPayment('timeout');">
+        Timeout
+    </button>-->
+                <button class="vd-btn vd-btn--supplementary" onclick="">
+                    Print Receipt
+                </button>
                 <button class="vd-btn vd-btn--supplementary" onclick="cancelPayment();">
                     Cancel
                 </button>
-                <p><a href="javascript:void(0)" class="vd-link" onclick="seeForm();">See how to add form elements</a></p>
+
+                <!--   <p><a href="javascript:void(0)" class="vd-link" onclick="seeForm();">See how to add form elements</a></p>-->
             </div>
             <!-- Custom script at Online POS -->
             <script src="https://vsdc.staging.vms.frcs.org.fj/onlinepos/v1/taxcore.min.js"></script>
