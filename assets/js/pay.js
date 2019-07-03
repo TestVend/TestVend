@@ -5,7 +5,7 @@
 
 // Handles payment flow communication to Vend via the Payments API.
 // Documentation: https://docs.vendhq.com/docs/payments-api-reference
-var Request = require("request");
+
 // Send postMessage JSON payload to the Payments API.
 function sendObjectToVend(object) {
     // Define parent/opener window.
