@@ -326,7 +326,7 @@ window.addEventListener(
                 }
 
             }
-            product = "[" + JSON.stringify(product) + "]";
+
             var invoiceRequest = {
                 "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
                 "Cashier": "Marie",
@@ -340,7 +340,7 @@ window.addEventListener(
                     "OmitTextualRepresentation": 0,
                     "OmitQRCodeGen": 0
                 },
-                "Items": product
+                "Items": "["+product+"]"
             };
             document.getElementById("invoiceRequest").innerHTML = JSON.stringify(invoiceRequest);
 
