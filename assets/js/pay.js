@@ -312,7 +312,7 @@ window.addEventListener(
                 var items = data.register_sale.line_items[i];
                 var productitem =
                 {
-                    "Name": items.product_id,
+                    "Name": "Moon mug",
                     "Quantity": items.quantity,
                     "Labels": [
                         "A"
