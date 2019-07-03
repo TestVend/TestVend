@@ -309,9 +309,9 @@ window.addEventListener(
             console.log("Total amount to be used in VSDC " + data.payment.amount);
             var product = null;
             for (var i = 0; i < data.register_sale.line_items.length; i++) {
-                console.log(data.register_sale.line_items.length);
+
                 var items = data.register_sale.line_items[i];
-                console.log(items);
+              
                 var productitem =
                 {
                     "Name": items.product_id,
