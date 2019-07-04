@@ -425,33 +425,7 @@ function seeForm() {
 window.onmessage = function (e) {
     console.log(e.data);
 }
-function CreateExampleInvoiceRequest() {
-    var invoiceRequest = {
-        "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
-        "Cashier": "Marie",
-        "BD": 8902798054,
-        "IT": "Normal",
-        "TT": "Sale",
-        "PaymentType": "Cash",
-        "InvoiceNumber": "F58BZUBG-T5UX48AJ-a1",
-        "PAC": "YQS4AR",
-        "Options": {
-            "OmitTextualRepresentation": 0,
-            "OmitQRCodeGen": 0
-        },
-        "Items": [
-            {
-                "Name": "Moon Mug",
-                "Quantity": 1,
-                "Labels": [
-                    "A"
-                ],
-                "TotalAmount": 25.90
-            }
-        ]
-    };
-    return invoiceRequest;
-}
+
 // On initial load of modal, configure the page settings such as removing the
 // close button and setting the header.
 $(function () {
