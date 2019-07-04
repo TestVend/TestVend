@@ -124,11 +124,13 @@ function createCORSRequest(method, url,header, value) {
     return xhr;
 }
 
-async function GetProductDetails(access_token,product_id) {
+ function GetProductDetails(access_token,product_id) {
+
+    
 
     var request = createCORSRequest("GET", "https://venddevelopment.vendhq.com/api/products/" + product_id, "authorization", "Bearer " + access_token);
     if (request) {
-        request.onload = function () {
+        request.onload = function RequestLoad () {
             //do something with request.responseText
 
             var res = JSON.parse(request.responseText);
@@ -137,7 +139,8 @@ async function GetProductDetails(access_token,product_id) {
             return product_name;
             
         };
-        request.send();
+        request.onload;
+        await request.send();
     }
    
 }
@@ -381,7 +384,7 @@ window.addEventListener(
                     var items = data.register_sale.line_items[i - 1];
                     console.log(items);
                     console.log("changed");
-                    var product_name = await GetProductDetails(access_token, items.product_id);
+                    var product_name = GetProductDetails(access_token, items.product_i);
                     this.console.log(product_name)
                     var productitem =
                     {
