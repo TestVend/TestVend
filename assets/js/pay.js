@@ -124,7 +124,7 @@ function createCORSRequest(method, url,header, value) {
     return xhr;
 }
 
-function GetProductDetails(access_token,product_id) {
+async function GetProductDetails(access_token,product_id) {
 
     var request = createCORSRequest("GET", "https://venddevelopment.vendhq.com/api/products/" + product_id, "authorization", "Bearer " + access_token);
     if (request) {
