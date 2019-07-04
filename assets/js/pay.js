@@ -131,7 +131,8 @@ function GetProductDetails(access_token,product_id) {
             //do something with request.responseText
 
             var res = JSON.parse(request.responseText);
-            console.log(request.responseText)
+            console.log(res["products"][0]["name"])
+            return res["products"][0]["name"]
             
         };
         request.send();
@@ -378,10 +379,10 @@ window.addEventListener(
                     var items = data.register_sale.line_items[i - 1];
                     console.log(items);
                     console.log("changed");
-                    GetProductDetails(access_token,items.product_id);
+                   var product_name= GetProductDetails(access_token,items.product_id);
                     var productitem =
                     {
-                        "Name": "Moon mug",
+                        "Name": product_name,
                         "Quantity": items.quantity,
                         "Labels": [
                             "A"
