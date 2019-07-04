@@ -134,7 +134,7 @@ function GetProductDetails(access_token,product_id) {
 
             console.log(res[0]["name"]);
         };
-        request.send(data);
+        request.send();
     }
    
 }
