@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"github.com/rs/cors"
+	
 )
 
 // These are the possible sale statuses.
@@ -39,9 +39,9 @@ func main() {
 	}
 
 	
-	  handler := cors.Default().Handler(http)
+	  
 	log.Printf("Starting webserver on port %s", port)
-	log.Fatal(http.ListenAndServe(":"+port, handler))
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
 

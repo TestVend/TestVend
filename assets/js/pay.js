@@ -107,26 +107,48 @@ function setupStep() {
         }
     })
 }
+function createCORSRequest(method, url) {
+    var xhr = new XMLHttpRequest();
+    if ("withCredentials" in xhr) {
+        xhr.open(method, url, true);
+    } else if (typeof XDomainRequest != "undefined") {
+        xhr = new XDomainRequest();
+        xhr.open(method, url);
+    } else {
+        xhr = null;
+    }
+    return xhr;
+}
+
+
 
 function GetProductDetails(productId)
 {
-    var data = "code=KWDZNSo67gmi5DG7p16hY_Ou6nq5iTu9asrgkMR5&client_id=z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV&client_secret=Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB&grant_type=authorization_code&redirect_uri=https%3A%2F%2Fwww.google.com%2F";
-    console.log(data);
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+    var request = createCORSRequest("get", "https://venddevelopment.vendhq.com/api/2.0/sales/");
+    if (request) {
+        request.onload = function () {
+            //do something with request.responseText
+            console.log(request.responseText);
+        };
+        request.send();
+    }
+    var data = null;
 
-    xhr.addEventListener("readystatechange", function () {
-        if (this.readyState === 4) {
-            console.log(this.responseText);
-        }
-    });
-   
-    xhr.open("POST", "https://venddevelopment.vendhq.com/api/1.0/token");
-    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-    xhr.setRequestHeader("Access-Control-Allow-Origin", "https://testvendsdc.herokuapp.com/");
-    xhr.setRequestHeader("Access-Control-Allow-Credentials", true);
+    //var xhr = new XMLHttpRequest();
+    //xhr.withCredentials = true;
 
-    xhr.send(data);
+    //xhr.addEventListener("readystatechange", function () {
+    //    if (this.readyState === 4) {
+    //        console.log(this.responseText);
+    //    }
+    //});
+
+    //xhr.open("GET", "https://venddevelopment.vendhq.com/api/2.0/sales/");
+    //xhr.setRequestHeader("authorization", "Bearer Cl2iG3P2M5cs5simYbSLT_CmymQOrH1NAXKhZF7V");
+    //xhr.setRequestHeader("cache-control", "no-cache");
+    //xhr.setRequestHeader("postman-token", "589ac1e9-f523-6e42-4fc5-a9791fa466c4");
+
+    //xhr.send(data);
 }
 
 // Get query parameters from the URL. Vend includes amount, origin, and
