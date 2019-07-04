@@ -95,7 +95,7 @@ function printFiscalInvoice(receiptHTML) {
     console.log('sending PRINT step')
     sendObjectToVend({
         step: 'PRINT',
-        receipt_html_extra: "<pre>" + receiptHTML +"</pre>"
+        receipt_html_extra: "<h2><pre>" + receiptHTML +"</pre></h2>"
     })
 }
 // SETUP: Customize the payment dialog. At this stage removing close button to
