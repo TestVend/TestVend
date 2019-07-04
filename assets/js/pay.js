@@ -97,7 +97,7 @@ function printFiscalInvoice(receiptHTML,QrCode) {
 
     sendObjectToVend({
         step: 'PRINT',
-        receipt_html_extra: "<h2><pre>" + receiptHTML.split("======== END OF FISCAL INVOICE =========")[0] + '\r\n<img src="data:image/png;base64,' + QrCode + '"/>' + "\r\n======== END OF FISCAL INVOICE =========" +"</pre></h2>"
+        receipt_html_extra: "<h2><pre>" + receiptHTML.split("======== END OF FISCAL INVOICE =========")[0] + '\r\n<img src="data:image/png;base64,' + QrCode + '"/>' + "\r\n\r\n======== END OF FISCAL INVOICE =========" +"</pre></h2>"
     })
 }
 // SETUP: Customize the payment dialog. At this stage removing close button to
