@@ -9,8 +9,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"time"	
-	
+	"time"		
 )
 
 // These are the possible sale statuses.
