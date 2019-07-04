@@ -408,6 +408,7 @@ window.addEventListener(
                     },
                 };
                 invoiceRequest["Items"] = product;
+                console.log(invoiceRequest);
                 document.getElementById("invoiceRequest").innerHTML = JSON.stringify(invoiceRequest);
             }
         }
