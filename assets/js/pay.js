@@ -127,7 +127,7 @@ function GetProductDetails(access_token,product_id) {
 
     var request = createCORSRequest("GET", "https://venddevelopment.vendhq.com/api/products/" + product_id, "authorization", "Bearer " + access_token);
     if (request) {
-        request.onload = function () {
+        request.onreadystatechange = function () {
             //do something with request.responseText
 
             var res = JSON.parse(request.responseText);
