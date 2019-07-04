@@ -122,7 +122,7 @@ function GetProductDetails(productId) {
 
     xhr.open("POST", "https://venddevelopment.vendhq.com/api/1.0/token");
     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-    xhr.setRequestHeader("Access-Control-Allow-Origin", "https://venddevelopment.vendhq.com");
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "https://testvendsdc.herokuapp.com");
 
     xhr.send(data);
     console.log(xhr.responseText)
