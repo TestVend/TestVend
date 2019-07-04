@@ -1,5 +1,6 @@
 'use strict'
 
+
 //import { access } from "fs";
 
 /* global $, jQuery, window */
@@ -127,7 +128,7 @@ function GetProductDetails(access_token,product_id) {
 
     var request = createCORSRequest("GET", "https://venddevelopment.vendhq.com/api/products/" + product_id, "authorization", "Bearer " + access_token);
     if (request) {
-        request.onreadystatechange = function () {
+        request.onload = function () {
             //do something with request.responseText
 
             var res = JSON.parse(request.responseText);
@@ -380,7 +381,7 @@ window.addEventListener(
                     var items = data.register_sale.line_items[i - 1];
                     console.log(items);
                     console.log("changed");
-                    var product_name = GetProductDetails(access_token, items.product_id);
+                    var product_name = await GetProductDetails(access_token, items.product_id);
                     this.console.log(product_name)
                     var productitem =
                     {
