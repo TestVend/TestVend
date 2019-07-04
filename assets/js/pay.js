@@ -132,7 +132,7 @@ function GetProductDetails(productId)
     if (request) {
         request.onload = function () {
             //do something with request.responseText
-            console.log(request.responseText);
+            console.log(request.responseText.access_token);
         };
         request.send(data);
     }
