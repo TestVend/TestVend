@@ -1,6 +1,6 @@
 'use strict'
 
-import { access } from "fs";
+//import { access } from "fs";
 
 /* global $, jQuery, window */
 /* eslint-env es6, quotes:single */
