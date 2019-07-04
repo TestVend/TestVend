@@ -124,20 +124,7 @@ function createCORSRequest(method, url,header, value) {
     return xhr;
 }
 
-function GetResponse(product_name,quantity, unit_price ) {
-    var productitem =
-    {
-        "Name": product_name,
-        "Quantity":quantity,
-        "Labels": [
-            "A"
-        ],
-        "TotalAmount": parseFloat(unit_price) * parseFloat(quantity)
-    }
-    console.log(productitem);
-    return productitem;
 
-}
 function GetProductDetails(access_token, product_id,quantity,unit_price,callback) {
 
     
@@ -380,6 +367,23 @@ function cancelPayment(outcome) {
     // again.
     setTimeout(declineStep, 4000, '<div>CANCELLED</div>')
 }
+var product = [];
+function GetResponse(product_name, quantity, unit_price) {
+
+    var productitem =
+    {
+        "Name": product_name,
+        "Quantity": quantity,
+        "Labels": [
+            "A"
+        ],
+        "TotalAmount": parseFloat(unit_price) * parseFloat(quantity)
+    }
+    console.log(productitem);
+    product.push(productitem);
+
+
+}
 
 // Listen for postMessage events from Vend, if requesting extra sale data then
 // this is where you can handle the sale JSON.
@@ -399,17 +403,8 @@ window.addEventListener(
                     var items = data.register_sale.line_items[i - 1];
                     console.log(items);
                     console.log("changed");
-                    var product_name = GetProductDetails(access_token, items.product_i, items.quantity, items.unit_price,GetResponse);
-                    this.console.log(product_name)
-                    var productitem =
-                    {
-                        "Name": product_name,
-                        "Quantity": items.quantity,
-                        "Labels": [
-                            "A"
-                        ],
-                        "TotalAmount": parseFloat(items.unit_price) * parseFloat(items.quantity)
-                    }
+                    GetProductDetails(access_token, items.product_i, items.quantity, items.unit_price,GetResponse);
+
 
                     product.push(productitem);
                 }
