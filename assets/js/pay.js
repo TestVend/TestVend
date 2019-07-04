@@ -368,6 +368,7 @@ function cancelPayment(outcome) {
     setTimeout(declineStep, 4000, '<div>CANCELLED</div>')
 }
 var product = [];
+var productData;
 function GetResponse(product_name, quantity, unit_price) {
 
     var productitem =
@@ -385,6 +386,9 @@ function GetResponse(product_name, quantity, unit_price) {
 
 }
 
+
+
+
 // Listen for postMessage events from Vend, if requesting extra sale data then
 // this is where you can handle the sale JSON.
 window.addEventListener(
@@ -396,6 +400,7 @@ window.addEventListener(
         data = JSON.parse(event.data)
         if (data.step == "DATA") {
             if (data.success == true) {
+                productData = data;
                 var product = [];
                 var access_token = GetAccessToken();
                 for (var i = 1; i <= data.register_sale.line_items.length; i++) {
@@ -403,10 +408,21 @@ window.addEventListener(
                     var items = data.register_sale.line_items[i - 1];
                     console.log(items);
                     console.log("changed");
-                    GetProductDetails(access_token, items.product_i, items.quantity, items.unit_price,GetResponse);
 
+                    var settings = {
+                        "async": false,
+                        "crossDomain": true,
+                        "url": "https://venddevelopment.vendhq.com/api/products/" + items.product_id,
+                        "method": "GET",
+                        "headers": {
+                            "authorization": "Bearer " + access_token,
+                        }
+                    }
+                    $.ajax(settings).done(function (response) {
+                        console.log(response);
+                    });
+                    //GetProductDetails(access_token, items.product_id, items.quantity, items.unit_price,GetResponse);
 
-                    product.push(productitem);
                 }
                 var invoiceRequest = {
                     "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
