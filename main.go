@@ -10,6 +10,8 @@ import (
 	"strconv"
 	"strings"
 	"time"		
+	 "github.com/gorilla/handlers"
+    "github.com/gorilla/mux"
 )
 
 // These are the possible sale statuses.
@@ -36,9 +38,9 @@ func main() {
 	if os.Getenv("PORT") != "" {
 		port = os.Getenv("PORT")
 	}
-
+	   router := mux.NewRouter()
 	log.Printf("Starting webserver on port %s", port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	log.Fatal(http.ListenAndServe(":"+port, handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(router)))
 }
 
 // Index displays the main payment processing page, giving the user options of
