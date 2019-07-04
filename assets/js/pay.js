@@ -120,10 +120,10 @@ function GetProductDetails(productId)
             console.log(this.responseText);
         }
     });
+   
+    xhr.open("POST", "https://venddevelopment.vendhq.com/api/1.0/token");
     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-    xhr.open("POST", "https://venddevelopment.vendhq.com/api/1.0/token");
-
 
     xhr.send(data);
 }
