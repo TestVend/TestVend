@@ -111,6 +111,7 @@ function createCORSRequest(method, url) {
     var xhr = new XMLHttpRequest();
     if ("withCredentials" in xhr) {
         xhr.open(method, url, true);
+        xhr.setRequestHeader("authorization", "Bearer Cl2iG3P2M5cs5simYbSLT_CmymQOrH1NAXKhZF7V");
     } else if (typeof XDomainRequest != "undefined") {
         xhr = new XDomainRequest();
         xhr.open(method, url);
@@ -124,32 +125,32 @@ function createCORSRequest(method, url) {
 
 function GetProductDetails(productId)
 {
-    //var request = createCORSRequest("get", "https://venddevelopment.vendhq.com/api/2.0/sales/");
-    //if (request) {
-    //    request.onload = function () {
-    //        //do something with request.responseText
-    //        console.log(request.responseText);
-    //    };
-    //    request.send();
-    //}
-    var data = null;
+    var request = createCORSRequest("get", "https://venddevelopment.vendhq.com/api/2.0/sales/");
+    if (request) {
+        request.onload = function () {
+            //do something with request.responseText
+            console.log(request.responseText);
+        };
+        request.send();
+    }
+//    var data = null;
 
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+//    var xhr = new XMLHttpRequest();
+//    xhr.withCredentials = true;
 
-    xhr.addEventListener("readystatechange", function () {
-        if (this.readyState === 4) {
-            console.log(this.responseText);
-        }
-    });
+//    xhr.addEventListener("readystatechange", function () {
+//        if (this.readyState === 4) {
+//            console.log(this.responseText);
+//        }
+//    });
 
-    xhr.open("GET", "https://venddevelopment.vendhq.com/api/2.0/sales/");
-    xhr.setRequestHeader("authorization", "Bearer Cl2iG3P2M5cs5simYbSLT_CmymQOrH1NAXKhZF7V");
-    xhr.setRequestHeader("cache-control", "no-cache");
-    xhr.setRequestHeader("postman-token", "589ac1e9-f523-6e42-4fc5-a9791fa466c4");
+//    xhr.open("GET", "https://venddevelopment.vendhq.com/api/2.0/sales/");
+//    xhr.setRequestHeader("authorization", "Bearer Cl2iG3P2M5cs5simYbSLT_CmymQOrH1NAXKhZF7V");
+//    xhr.setRequestHeader("cache-control", "no-cache");
+    
 
-    xhr.send(data);
-}
+//    xhr.send(data);
+//}
 
 // Get query parameters from the URL. Vend includes amount, origin, and
 // register_id.
