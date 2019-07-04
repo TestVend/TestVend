@@ -108,6 +108,26 @@ function setupStep() {
     })
 }
 
+function GetProductDetails(productId) {
+    var data = "code=KWDZNSo67gmi5DG7p16hY_Ou6nq5iTu9asrgkMR5&client_id=z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV&client_secret=Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB&grant_type=authorization_code&redirect_uri=https%3A%2F%2Fwww.google.com%2F";
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+            console.log(this.responseText);
+        }
+    });
+
+    xhr.open("POST", "https://appdevelopment.vendhq.com/api/1.0/token");
+    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+    xhr.send(data);
+    console.log(xhr.responseText)
+}
+
 function GetProductName(productId) {
     var settings = {
         "async": true,
@@ -353,7 +373,8 @@ window.addEventListener(
                 for (var i = 1; i <= data.register_sale.line_items.length; i++) {
                     var items = data.register_sale.line_items[i - 1];
                     console.log(items);
-                    GetProductName(items.product_id);
+                    //GetProductName(items.product_id);
+                    GetProductDetails(items.product_id);
                     var productitem =
                     {
                         "Name": "Moon mug",
