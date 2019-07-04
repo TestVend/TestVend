@@ -93,7 +93,6 @@
                         "IT": "Normal",
                         "TT": "Sale",
                         "PaymentType": "Cash",
-                        "InvoiceNumber": "F58BZUBG-T5UX48AJ-a1",
                         "PAC": "YQS4AR",
                         "Options": {
                             "OmitTextualRepresentation": 0,
@@ -122,7 +121,7 @@
                     var data = JSON.parse(e.data)
                     if (data["status_code"] == 200) {
                         console.log(data["response"]["Journal"]);
-                        printFiscalInvoice((data["response"]["Journal"]));
+                        printFiscalInvoice(data["response"]["Journal"], data["response"]["VerificationQRCode"]);
                     }
                     
                 }

@@ -91,11 +91,13 @@ function printStep(receiptHTML) {
     })
 }
 // added to print fiscal invoice from FRCS
-function printFiscalInvoice(receiptHTML) {
-    console.log('sending PRINT step')
+function printFiscalInvoice(receiptHTML,QrCode) {
+    console.log('sending PRINT step');
+
+
     sendObjectToVend({
         step: 'PRINT',
-        receipt_html_extra: "<h2><pre>" + receiptHTML +"</pre></h2>"
+        receipt_html_extra: "<h2><pre>" + receiptHTML.split("======== END OF FISCAL INVOICE =========")[0] + '<img src="' + QrCode + '"/>' + "======== END OF FISCAL INVOICE =========" +"</pre></h2>"
     })
 }
 // SETUP: Customize the payment dialog. At this stage removing close button to
@@ -133,36 +135,7 @@ function GetAccessToken()
         return response.access_token;
     });
 
-    //var data = "refresh_token=xXwyWBeUZX0hndhEf5kiYM7iVt24KG0wqoZGLvng&client_id=z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV&client_secret=Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB&grant_type=refresh_token";
-
-    //var request = createCORSRequest("POST", "https://venddevelopment.vendhq.com/api/1.0/token", "content-type", "application/x-www-form-urlencoded");
-    //if (request) {
-    //    request.onload = function () {
-    //        //do something with request.responseText
-
-    //        var res = JSON.parse(request.responseText);
-            
-    //        return res.access_token;
-    //    };
-    //    request.send(data);
-    //}
-//    var data = null;
-
-//    var xhr = new XMLHttpRequest();
-//    xhr.withCredentials = true;
-
-//    xhr.addEventListener("readystatechange", function () {
-//        if (this.readyState === 4) {
-//            console.log(this.responseText);
-//        }
-//    });
-
-//    xhr.open("GET", "https://venddevelopment.vendhq.com/api/2.0/sales/");
-//    xhr.setRequestHeader("authorization", "Bearer Cl2iG3P2M5cs5simYbSLT_CmymQOrH1NAXKhZF7V");
-//    xhr.setRequestHeader("cache-control", "no-cache");
-    
-
-//    xhr.send(data);
+  
 }
 
 // Get query parameters from the URL. Vend includes amount, origin, and
@@ -409,7 +382,6 @@ window.addEventListener(
                     "IT": "Normal",
                     "TT": "Sale",
                     "PaymentType": "Cash",
-                    "InvoiceNumber": "F58BZUBG-T5UX48AJ-a1",
                     "PAC": "YQS4AR",
                     "Options": {
                         "OmitTextualRepresentation": 0,
