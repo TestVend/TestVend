@@ -108,7 +108,8 @@ function setupStep() {
     })
 }
 
-function GetProductDetails(productId) {
+function GetProductDetails(productId)
+{
     var data = "code=KWDZNSo67gmi5DG7p16hY_Ou6nq5iTu9asrgkMR5&client_id=z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV&client_secret=Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB&grant_type=authorization_code&redirect_uri=https%3A%2F%2Fwww.google.com%2F";
     console.log(data);
     var xhr = new XMLHttpRequest();
@@ -122,10 +123,9 @@ function GetProductDetails(productId) {
 
     xhr.open("POST", "https://venddevelopment.vendhq.com/api/1.0/token");
     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-    xhr.setRequestHeader("Access-Control-Allow-Origin", "https://testvendsdc.herokuapp.com");
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
 
     xhr.send(data);
-    console.log(xhr.responseText)
 }
 
 // Get query parameters from the URL. Vend includes amount, origin, and
