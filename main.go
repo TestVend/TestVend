@@ -9,9 +9,8 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"time"		
-	 "github.com/gorilla/handlers"
-    "github.com/gorilla/mux"
+	"time"
+	"github.com/rs/cors"
 )
 
 // These are the possible sale statuses.
@@ -38,10 +37,13 @@ func main() {
 	if os.Getenv("PORT") != "" {
 		port = os.Getenv("PORT")
 	}
-	   router := mux.NewRouter()
+
+	
+	  handler := cors.Default().Handler(http)
 	log.Printf("Starting webserver on port %s", port)
-	log.Fatal(http.ListenAndServe(":"+port, handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(router)))
+	log.Fatal(http.ListenAndServe(":"+port, handler))
 }
+
 
 // Index displays the main payment processing page, giving the user options of
 // which outcome they would like the Pay Example to simulate.
