@@ -114,20 +114,38 @@ function setupStep() {
 
 function GetAccessToken()
 {
-
-    var data = "refresh_token=xXwyWBeUZX0hndhEf5kiYM7iVt24KG0wqoZGLvng&client_id=z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV&client_secret=Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB&grant_type=refresh_token";
-
-    var request = createCORSRequest("POST", "https://venddevelopment.vendhq.com/api/1.0/token", "content-type", "application/x-www-form-urlencoded");
-    if (request) {
-        request.onload = function () {
-            //do something with request.responseText
-
-            var res = JSON.parse(request.responseText);
-            
-            return res.access_token;
-        };
-        request.send(data);
+    var settings = {
+        "async": false,
+        "crossDomain": true,
+        "url": "https://venddevelopment.vendhq.com/api/1.0/token",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/x-www-form-urlencoded",
+        },
+        "data": {
+            "refresh_token": "xXwyWBeUZX0hndhEf5kiYM7iVt24KG0wqoZGLvng",
+            "client_id": "z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV",
+            "client_secret": "Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB",
+            "grant_type": "refresh_token"
+        }
     }
+    $.ajax(settings).done(function (response) {
+        return response.access_token;
+    });
+
+    //var data = "refresh_token=xXwyWBeUZX0hndhEf5kiYM7iVt24KG0wqoZGLvng&client_id=z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV&client_secret=Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB&grant_type=refresh_token";
+
+    //var request = createCORSRequest("POST", "https://venddevelopment.vendhq.com/api/1.0/token", "content-type", "application/x-www-form-urlencoded");
+    //if (request) {
+    //    request.onload = function () {
+    //        //do something with request.responseText
+
+    //        var res = JSON.parse(request.responseText);
+            
+    //        return res.access_token;
+    //    };
+    //    request.send(data);
+    //}
 //    var data = null;
 
 //    var xhr = new XMLHttpRequest();
