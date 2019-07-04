@@ -124,7 +124,7 @@ function createCORSRequest(method, url,header, value) {
     return xhr;
 }
 
-function GetResponse(quantity, unit_price, product_name) {
+function GetResponse(product_name,quantity, unit_price ) {
     var productitem =
     {
         "Name": product_name,
