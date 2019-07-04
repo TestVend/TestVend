@@ -150,7 +150,7 @@ function GetProductDetails(productId)
     
 
 //    xhr.send(data);
-//}
+}
 
 // Get query parameters from the URL. Vend includes amount, origin, and
 // register_id.
