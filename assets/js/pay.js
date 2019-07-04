@@ -110,7 +110,7 @@ function setupStep() {
 
 function GetProductDetails(productId) {
     var data = "code=KWDZNSo67gmi5DG7p16hY_Ou6nq5iTu9asrgkMR5&client_id=z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV&client_secret=Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB&grant_type=authorization_code&redirect_uri=https%3A%2F%2Fwww.google.com%2F";
-
+    console.log(data);
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
 
