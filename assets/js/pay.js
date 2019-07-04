@@ -378,7 +378,7 @@ window.addEventListener(
                     var items = data.register_sale.line_items[i - 1];
                     console.log(items);
                     console.log("changed");
-                    GetProductDetails(,access_token,items.product_id);
+                    GetProductDetails(access_token,items.product_id);
                     var productitem =
                     {
                         "Name": "Moon mug",
