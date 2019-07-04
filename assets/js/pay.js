@@ -124,11 +124,21 @@ function createCORSRequest(method, url,header, value) {
     return xhr;
 }
 
-function GetResponse (response) {
-    return response;
+function GetResponse(quantity, unit_price, product_name) {
+    var productitem =
+    {
+        "Name": product_name,
+        "Quantity":quantity,
+        "Labels": [
+            "A"
+        ],
+        "TotalAmount": parseFloat(unit_price) * parseFloat(quantity)
+    }
+    console.log(productitem);
+    return productitem;
 
 }
- function GetProductDetails(access_token,product_id,callback) {
+function GetProductDetails(access_token, product_id,quantity,unit_price,callback) {
 
     
 
@@ -140,7 +150,7 @@ function GetResponse (response) {
             var res = JSON.parse(request.responseText);
             var product_name = res["products"][0]["name"];
             console.log(product_name);
-            callback(product_name);
+            callback(product_name, quantity, unit_price);
             
         };
         
@@ -385,10 +395,11 @@ window.addEventListener(
                 var product = [];
                 var access_token = GetAccessToken();
                 for (var i = 1; i <= data.register_sale.line_items.length; i++) {
+                    console.log(data.register_sale.line_items.length);
                     var items = data.register_sale.line_items[i - 1];
                     console.log(items);
                     console.log("changed");
-                    var product_name = GetProductDetails(access_token, items.product_i, GetResponse);
+                    var product_name = GetProductDetails(access_token, items.product_i, items.quantity, items.unit_price,GetResponse);
                     this.console.log(product_name)
                     var productitem =
                     {
@@ -399,7 +410,7 @@ window.addEventListener(
                         ],
                         "TotalAmount": parseFloat(items.unit_price) * parseFloat(items.quantity)
                     }
-                    productitem.add("test", "test");
+
                     product.push(productitem);
                 }
                 var invoiceRequest = {
