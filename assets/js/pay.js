@@ -127,12 +127,15 @@ function GetProductDetails(productId)
 {
 
     var data = "refresh_token=xXwyWBeUZX0hndhEf5kiYM7iVt24KG0wqoZGLvng&client_id=z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV&client_secret=Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB&grant_type=refresh_token";
-
+    var access_token = null
     var request = createCORSRequest("POST", "https://venddevelopment.vendhq.com/api/1.0/token", "content-type", "application/x-www-form-urlencoded");
     if (request) {
         request.onload = function () {
             //do something with request.responseText
-            console.log(request.responseText.access_token);
+
+            var res = JSON.parse(request.responseText);
+            access_token = res.access_token;
+            console.log(access_token);
         };
         request.send(data);
     }
