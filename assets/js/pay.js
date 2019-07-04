@@ -107,11 +107,11 @@ function setupStep() {
         }
     })
 }
-function createCORSRequest(method, url) {
+function createCORSRequest(method, url,header, value) {
     var xhr = new XMLHttpRequest();
     if ("withCredentials" in xhr) {
         xhr.open(method, url, true);
-        xhr.setRequestHeader("authorization", "Bearer Cl2iG3P2M5cs5simYbSLT_CmymQOrH1NAXKhZF7V");
+        xhr.setRequestHeader(header, value);
     } else if (typeof XDomainRequest != "undefined") {
         xhr = new XDomainRequest();
         xhr.open(method, url);
@@ -125,13 +125,16 @@ function createCORSRequest(method, url) {
 
 function GetProductDetails(productId)
 {
-    var request = createCORSRequest("get", "https://venddevelopment.vendhq.com/api/2.0/sales/");
+
+    var data = "refresh_token=xXwyWBeUZX0hndhEf5kiYM7iVt24KG0wqoZGLvng&client_id=z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV&client_secret=Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB&grant_type=refresh_token";
+
+    var request = createCORSRequest("POST", "https://venddevelopment.vendhq.com/api/1.0/token", "content-type", "application/x-www-form-urlencoded");
     if (request) {
         request.onload = function () {
             //do something with request.responseText
             console.log(request.responseText);
         };
-        request.send();
+        request.send(data);
     }
 //    var data = null;
 
