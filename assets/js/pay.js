@@ -124,7 +124,11 @@ function createCORSRequest(method, url,header, value) {
     return xhr;
 }
 
- function GetProductDetails(access_token,product_id) {
+function GetResponse (response) {
+    return response;
+
+}
+ function GetProductDetails(access_token,product_id,callback) {
 
     
 
@@ -136,12 +140,11 @@ function createCORSRequest(method, url,header, value) {
             var res = JSON.parse(request.responseText);
             var product_name = res["products"][0]["name"];
             console.log(product_name);
-            return product_name;
+            callback(product_name);
             
         };
         
         request.send();
-        request.onload();
     }
    
 }
@@ -385,7 +388,7 @@ window.addEventListener(
                     var items = data.register_sale.line_items[i - 1];
                     console.log(items);
                     console.log("changed");
-                    var product_name = GetProductDetails(access_token, items.product_i);
+                    var product_name = GetProductDetails(access_token, items.product_i, GetResponse);
                     this.console.log(product_name)
                     var productitem =
                     {
