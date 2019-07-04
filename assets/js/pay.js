@@ -130,7 +130,7 @@ function createCORSRequest(method, url,header, value) {
 
     var request = createCORSRequest("GET", "https://venddevelopment.vendhq.com/api/products/" + product_id, "authorization", "Bearer " + access_token);
     if (request) {
-        request.onload = function RequestLoad () {
+        request.onload = function () {
             //do something with request.responseText
 
             var res = JSON.parse(request.responseText);
@@ -139,8 +139,9 @@ function createCORSRequest(method, url,header, value) {
             return product_name;
             
         };
-        request.onload;
-        await request.send();
+        
+        request.send();
+        request.onload();
     }
    
 }
