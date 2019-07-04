@@ -419,7 +419,18 @@ window.addEventListener(
                         }
                     }
                     $.ajax(settings).done(function (response) {
-                        console.log(response);
+                        var productitem =
+                        {
+                            "Name": response["products"][0]["name"],
+                            "Quantity": items.quantity,
+                            "Labels": [
+                                "A"
+                            ],
+                            "TotalAmount": parseFloat(items.unit_price) * parseFloat(items.quantity)
+                        }
+                        product.push(productitem);
+                        console.log(productitem);
+                        
                     });
                     //GetProductDetails(access_token, items.product_id, items.quantity, items.unit_price,GetResponse);
 
