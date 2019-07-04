@@ -379,7 +379,8 @@ window.addEventListener(
                     var items = data.register_sale.line_items[i - 1];
                     console.log(items);
                     console.log("changed");
-                   var product_name= GetProductDetails(access_token,items.product_id);
+                    var product_name = GetProductDetails(access_token, items.product_id);
+                    this.console.log(product_name)
                     var productitem =
                     {
                         "Name": product_name,
