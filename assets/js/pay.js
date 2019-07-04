@@ -95,7 +95,7 @@ function printFiscalInvoice(receiptHTML) {
     console.log('sending PRINT step')
     sendObjectToVend({
         step: 'PRINT',
-        receipt_html_extra: receiptHTML
+        receipt_html_extra: "<pre>" + receiptHTML +"</pre>"
     })
 }
 // SETUP: Customize the payment dialog. At this stage removing close button to
@@ -110,41 +110,7 @@ function setupStep() {
         }
     })
 }
-function createCORSRequest(method, url,header, value) {
-    var xhr = new XMLHttpRequest();
-    if ("withCredentials" in xhr) {
-        xhr.open(method, url, true);
-        xhr.setRequestHeader(header, value);
-    } else if (typeof XDomainRequest != "undefined") {
-        xhr = new XDomainRequest();
-        xhr.open(method, url);
-    } else {
-        xhr = null;
-    }
-    return xhr;
-}
 
-
-function GetProductDetails(access_token, product_id,quantity,unit_price,callback) {
-
-    
-
-    var request = createCORSRequest("GET", "https://venddevelopment.vendhq.com/api/products/" + product_id, "authorization", "Bearer " + access_token);
-    if (request) {
-        request.onload = function () {
-            //do something with request.responseText
-
-            var res = JSON.parse(request.responseText);
-            var product_name = res["products"][0]["name"];
-            console.log(product_name);
-            callback(product_name, quantity, unit_price);
-            
-        };
-        
-        request.send();
-    }
-   
-}
 
 function GetAccessToken()
 {
@@ -369,22 +335,6 @@ function cancelPayment(outcome) {
 }
 var product = [];
 var productData;
-function GetResponse(product_name, quantity, unit_price) {
-
-    var productitem =
-    {
-        "Name": product_name,
-        "Quantity": quantity,
-        "Labels": [
-            "A"
-        ],
-        "TotalAmount": parseFloat(unit_price) * parseFloat(quantity)
-    }
-    console.log(productitem);
-    product.push(productitem);
-
-
-}
 
 
 
@@ -431,8 +381,7 @@ window.addEventListener(
                         product.push(productitem);
                         console.log(productitem);
                         
-                    });
-                    //GetProductDetails(access_token, items.product_id, items.quantity, items.unit_price,GetResponse);
+                    });                   
 
                 }
                 var invoiceRequest = {
