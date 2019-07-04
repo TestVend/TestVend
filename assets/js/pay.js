@@ -131,8 +131,8 @@ function GetProductDetails(access_token,product_id) {
             //do something with request.responseText
 
             var res = JSON.parse(request.responseText);
-
-            console.log(res[0]["name"]);
+            console.log(request.responseText)
+            
         };
         request.send();
     }
