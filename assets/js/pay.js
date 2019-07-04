@@ -1,5 +1,7 @@
 'use strict'
 
+import { access } from "fs";
+
 /* global $, jQuery, window */
 /* eslint-env es6, quotes:single */
 
@@ -121,21 +123,35 @@ function createCORSRequest(method, url,header, value) {
     return xhr;
 }
 
+function GetProductDetails(access_token,product_id) {
 
+    var request = createCORSRequest("GET", "https://venddevelopment.vendhq.com/api/products/" + product_id, "authorization", "Bearer " + access_token);
+    if (request) {
+        request.onload = function () {
+            //do something with request.responseText
 
-function GetProductDetails(productId)
+            var res = JSON.parse(request.responseText);
+
+            console.log(res[0]["name"]);
+        };
+        request.send(data);
+    }
+   
+}
+
+function GetAccessToken()
 {
 
     var data = "refresh_token=xXwyWBeUZX0hndhEf5kiYM7iVt24KG0wqoZGLvng&client_id=z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV&client_secret=Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB&grant_type=refresh_token";
-    var access_token = null
+
     var request = createCORSRequest("POST", "https://venddevelopment.vendhq.com/api/1.0/token", "content-type", "application/x-www-form-urlencoded");
     if (request) {
         request.onload = function () {
             //do something with request.responseText
 
             var res = JSON.parse(request.responseText);
-            access_token = res.access_token;
-            console.log(access_token);
+            
+            return res.access_token;
         };
         request.send(data);
     }
@@ -357,11 +373,12 @@ window.addEventListener(
         if (data.step == "DATA") {
             if (data.success == true) {
                 var product = [];
+                var access_token = GetAccessToken();
                 for (var i = 1; i <= data.register_sale.line_items.length; i++) {
                     var items = data.register_sale.line_items[i - 1];
                     console.log(items);
                     console.log("changed");
-                    GetProductDetails(items.product_id);
+                    GetProductDetails(,access_token,items.product_id);
                     var productitem =
                     {
                         "Name": "Moon mug",
