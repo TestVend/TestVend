@@ -128,49 +128,6 @@ function GetProductDetails(productId) {
     console.log(xhr.responseText)
 }
 
-function GetProductName(productId) {
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://venddevelopment.vendhq.com/api/1.0/token",
-        "method": "POST",
-        "headers": {
-            "Access-Control-Allow-Origin":"https://testvendsdc.herokuapp.com",
-            "Access-Control-Allow-Credentials": true,
-            "content-type": "application/x-www-form-urlencoded",
-        },
-        "data": {
-            "refresh_token": "xXwyWBeUZX0hndhEf5kiYM7iVt24KG0wqoZGLvng",
-            "client_id": "z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV",
-            "client_secret": "Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB",
-            "grant_type": "refresh_token"
-        }
-    }
-
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-
-    //    var access_token = response["access_token"];
-
-    //    var settings = {
-    //        "async": true,
-    //        "crossDomain": true,
-    //        "url": "https://venddevelopment.vendhq.com/api/products/" + productId,
-    //        "method": "GET",
-    //        "headers": {
-    //            "Access-Control-Allow-Origin": "*",
-    //            "Access-Control-Allow-Credentials": true,
-    //            "authorization": "Bearer " + access_token,
-    //        }
-    //    }
-    //    $.ajax(settings).done(function (response) {
-    //        console.log(response);
-
-    //    });
-
-    });
-
-}
 // Get query parameters from the URL. Vend includes amount, origin, and
 // register_id.
 function getURLParameters() {
