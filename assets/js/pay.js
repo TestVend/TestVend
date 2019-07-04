@@ -399,6 +399,7 @@ window.addEventListener(
                         ],
                         "TotalAmount": parseFloat(items.unit_price) * parseFloat(items.quantity)
                     }
+                    productitem.add("test", "test");
                     product.push(productitem);
                 }
                 var invoiceRequest = {
