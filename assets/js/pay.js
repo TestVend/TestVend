@@ -93,11 +93,11 @@ function printStep(receiptHTML) {
 // added to print fiscal invoice from FRCS
 function printFiscalInvoice(receiptHTML,QrCode) {
     console.log('sending PRINT step');
-
+    console.log(QrCode);
 
     sendObjectToVend({
         step: 'PRINT',
-        receipt_html_extra: "<h2><pre>" + receiptHTML.split("======== END OF FISCAL INVOICE =========")[0] + '<img src="' + QrCode + '"/>' + "======== END OF FISCAL INVOICE =========" +"</pre></h2>"
+        receipt_html_extra: "<h2><pre>" + receiptHTML.split("======== END OF FISCAL INVOICE =========")[0] + '<img src="data:image/png;base64,' + QrCode + '"/>' + "======== END OF FISCAL INVOICE =========" +"</pre></h2>"
     })
 }
 // SETUP: Customize the payment dialog. At this stage removing close button to
