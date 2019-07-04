@@ -111,11 +111,11 @@ function setupStep() {
 function GetProductName(productId) {
     var settings = {
         "async": true,
-        "Access-Control-Allow-Credentials": true,
+        "crossDomain": true,
         "url": "https://venddevelopment.vendhq.com/api/1.0/token",
         "method": "POST",
         "headers": {
-            "Access-Control-Allow-Origin":"*",
+            "Access-Control-Allow-Origin":"https://testvendsdc.herokuapp.com",
             "Access-Control-Allow-Credentials": true,
             "content-type": "application/x-www-form-urlencoded",
         },
@@ -130,23 +130,23 @@ function GetProductName(productId) {
     $.ajax(settings).done(function (response) {
         console.log(response);
 
-        var access_token = response["access_token"];
+    //    var access_token = response["access_token"];
 
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://venddevelopment.vendhq.com/api/products/" + productId,
-            "method": "GET",
-            "headers": {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Credentials": true,
-                "authorization": "Bearer " + access_token,
-            }
-        }
-        $.ajax(settings).done(function (response) {
-            console.log(response);
+    //    var settings = {
+    //        "async": true,
+    //        "crossDomain": true,
+    //        "url": "https://venddevelopment.vendhq.com/api/products/" + productId,
+    //        "method": "GET",
+    //        "headers": {
+    //            "Access-Control-Allow-Origin": "*",
+    //            "Access-Control-Allow-Credentials": true,
+    //            "authorization": "Bearer " + access_token,
+    //        }
+    //    }
+    //    $.ajax(settings).done(function (response) {
+    //        console.log(response);
 
-        });
+    //    });
 
     });
 
