@@ -35,8 +35,7 @@ function sendObjectToVendForFiscalPrint(object) {
 function acceptStep(receiptHTML, transactionID, qrCode, verificationUrl) {
     console.log('sending ACCEPT step')
     sendObjectToVend({
-        step: 'ACCEPT',
-        print: true,
+        step: 'ACCEPT',      
         transaction_id: transactionID,
         receipt_html_extra: receiptHTML
     })
