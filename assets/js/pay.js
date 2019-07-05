@@ -177,7 +177,10 @@ function checkResponse(response, htmlToPrint, qrCode, verificationUrl) {
     switch (response.status) {
         case 'ACCEPTED':
             $('#statusMessage').empty()
-
+            console.log("Response: " + response);
+            console.log("htmltoprint" + htmlToPrint);
+            console.log("qrcode" + qrCode);
+            console.log("verificationurl" + verificationUrl);
             acceptStep(htmlToPrint, response.id, qrCode, verificationUrl)
             break
         case 'DECLINED':
