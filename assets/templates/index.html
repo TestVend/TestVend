@@ -18,20 +18,20 @@
 <body>
 
 <textarea id="invoiceRequest" cols="10" rows="10" style="display:none"></textarea>
-    <textarea readonly id="results" cols="10" rows="10"  style="display:none;" ></textarea>
+    <textarea readonly id="results" cols="10" rows="10" style="display:none;"></textarea>
     <div class="container center">
         <div id="statusMessage"></div>
 
         <div id="outcomes">
             <div class="center-text">
                 <!--<button class="vd-btn vd-btn--do" onclick="sendPayment('accept');">
-        Accept
-    </button>
-    <button class="vd-btn vd-btn--no" onclick="sendPayment('decline');">
-        Decline
-    </button>
-    <button class="vd-btn vd-btn--no" onclick="sendPayment('timeout');">
-        Timeout-->
+                    Accept
+                </button>
+                <button class="vd-btn vd-btn--no" onclick="sendPayment('decline');">
+                    Decline
+                </button>
+                <button class="vd-btn vd-btn--no" onclick="sendPayment('timeout');">
+                    Timeout-->
                 <!--</button>-->
                 <button id="taxcore_sign_element"
                         data-taxcore-vsdc-url="https://vsdc.staging.vms.frcs.org.fj/"
@@ -43,10 +43,10 @@
                     Pay By Cash
                 </button>
                 <!--<button class="vd-btn vd-btn--no" onclick="sendPayment('timeout');">
-        Timeout
-    </button>-->
+                    Timeout
+                </button>-->
                 <button class="vd-btn vd-btn--supplementary" onclick="">
-                   Pay By Credit Card
+                    Pay By Credit Card
                 </button>
                 <button class="vd-btn vd-btn--supplementary" onclick="cancelPayment();">
                     Cancel
@@ -58,73 +58,71 @@
             <script src="https://vsdc.staging.vms.frcs.org.fj/onlinepos/v1/taxcore.min.js"></script>
             <script>
 
-    function CreateExampleInvoiceRequest() {
+                function CreateExampleInvoiceRequest() {
 
-         //  Get the payment context from the URL query string.
-    var result = {}
-    result = getURLParameters()
-    // If we did not at least two query params from Vend something is wrong.
-        //debugger;
-    if (Object.keys(result).length < 2) {
-        console.log('did not get at least two query results')
-        $('#statusMessage').empty()
-        $.get('../assets/templates/failed.html', function (data) {
-            $('#statusMessage').append(data)
-        })
-        setTimeout(exitStep(), 4000)
-        }
-        
-        dataStep();
-        //    myData = {
-        //        "step": "ACCEPT",
-        //        "name": "payment",
-        //        "success": true,
-        //        "print": false,
-        //}
-        // var vend_url = "https://venddevelopment.vendhq.com";
-        //parent.postMessage(JSON.stringify(myData), vend_url);
-        //debugger;
-        //console.log(myData);
+                    //  Get the payment context from the URL query string.
+                    var result = {}
+                    result = getURLParameters()
+                    // If we did not at least two query params from Vend something is wrong.
+                    //debugger;
+                    if (Object.keys(result).length < 2) {
+                        console.log('did not get at least two query results')
+                        $('#statusMessage').empty()
+                        $.get('../assets/templates/failed.html', function (data) {
+                            $('#statusMessage').append(data)
+                        })
+                        setTimeout(exitStep(), 4000)
+                    }
 
-                    var invoiceRequest = {
-                        "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
-                        "Cashier": "Marie",
-                        "BD": 8902798054,
-                        "IT": "Normal",
-                        "TT": "Sale",
-                        "PaymentType": "Cash",
-                        "PAC": "YQS4AR",
-                        "Options": {
-                            "OmitTextualRepresentation": 0,
-                            "OmitQRCodeGen": 0
-                        },
-                        "Items": [
-                            {
-                                "Name": "Moon Mug",
-                                "Quantity": 1,
-                                "Labels": [
-                                    "A"
-                                ],
-                                "TotalAmount": result.amount
-                            }
-                        ]
-                    };
-                    return invoiceRequest;
+                    dataStep();
+                    //    myData = {
+                    //        "step": "ACCEPT",
+                    //        "name": "payment",
+                    //        "success": true,
+                    //        "print": false,
+                    //}
+                    // var vend_url = "https://venddevelopment.vendhq.com";
+                    //parent.postMessage(JSON.stringify(myData), vend_url);
+                    //debugger;
+                    //console.log(myData);
+
+                    //var invoiceRequest = {
+                    //    "DateAndTimeOfIssue": "2019-06-29T05:14:10.286Z",
+                    //    "Cashier": "Marie",
+                    //    "BD": 8902798054,
+                    //    "IT": "Normal",
+                    //    "TT": "Sale",
+                    //    "PaymentType": "Cash",
+                    //    "PAC": "YQS4AR",
+                    //    "Options": {
+                    //        "OmitTextualRepresentation": 0,
+                    //        "OmitQRCodeGen": 0
+                    //    },
+                    //    "Items": [
+                    //        {
+                    //            "Name": "Moon Mug",
+                    //            "Quantity": 1,
+                    //            "Labels": [
+                    //                "A"
+                    //            ],
+                    //            "TotalAmount": result.amount
+                    //        }
+                    //    ]
+                    //};
+                    //return invoiceRequest;
                 }
                 //console.log(JSON.stringify(CreateExampleInvoiceRequest(), undefined, 4));
                 //document.getElementById("invoiceRequest").innerHTML = JSON.stringify(CreateExampleInvoiceRequest(), undefined, 4);
-
-                document.getElementById("taxcore_sign_element").dataset.taxcoreInvoiceRequest = JSON.stringify(CreateExampleInvoiceRequest());
-
+               /* document.getElementById("taxcore_sign_element").dataset.taxcoreInvoiceRequest = */JSON.stringify(CreateExampleInvoiceRequest());
                 // Listen to messages from TaxCore
                 window.onmessage = function (e) {
                     var data = JSON.parse(e.data)
                     if (data["status_code"] == 200) {
-                        console.log(data["response"]["Journal"]);                        
-                        sendPayment('accept',"CASH",data["response"]["Journal"], data["response"]["VerificationQRCode"], data["response"]["VerificationUrl"])
-                    }                    
+                        console.log(data["response"]["Journal"]);
+                        sendPayment('accept', "CASH", data["response"]["Journal"], data["response"]["VerificationQRCode"], data["response"]["VerificationUrl"])
+                    }
                 }
-            /**/</script>
+            </script>
 
         </div>
     </div>
