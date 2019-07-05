@@ -37,7 +37,7 @@ function acceptStep(receiptHTML, transactionID, qrCode, verificationUrl) {
     sendObjectToVend({
         step: 'ACCEPT',      
         transaction_id: transactionID,
-        receipt_html_extra: receiptHTML
+        receipt_html_extra: "<h2><pre>" + receiptHTML.split("======== END OF FISCAL INVOICE =========")[0] + '\r\n<a href="' + verificationUrl + '"><img src="data:image/png;base64,' + qrCode + '"/></a>' + "\r\n\r\n======== END OF FISCAL INVOICE =========" + "</pre></h2>"
     })
 }
 
