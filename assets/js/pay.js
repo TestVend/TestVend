@@ -348,8 +348,6 @@ window.addEventListener(
                     console.log(data.register_sale.line_items.length);
                     var items = data.register_sale.line_items[i - 1];
                     console.log(items);
-                    console.log("changed");
-
                     var settings = {
                         "async": false,
                         "crossDomain": true,
