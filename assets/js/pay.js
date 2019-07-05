@@ -32,7 +32,7 @@ function sendObjectToVendForFiscalPrint(object) {
 //
 // DESIRED STATE: The transaction_id of the external payment provider can be
 // specified, and l**ater retrieved via the REST API.
-function acceptStep(receiptHTML, transactionID,, qrCode, verificationUrl) {
+function acceptStep(receiptHTML, transactionID, qrCode, verificationUrl) {
     console.log('sending ACCEPT step')
     sendObjectToVend({
         step: 'ACCEPT',
