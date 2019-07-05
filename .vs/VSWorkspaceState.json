@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\assets",
-    "\\assets\\js"
+    "\\assets\\images",
+    "\\assets\\js",
+    "\\assets\\templates"
   ],
-  "SelectedNode": "\\main.go",
+  "SelectedNode": "\\assets\\js\\pay.js",
   "PreviewInSolutionExplorer": false
 }

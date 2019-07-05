@@ -119,13 +119,13 @@ function GetAccessToken()
     var settings = {
         "async": false,
         "crossDomain": true,
-        "url": "https://venddevelopment.vendhq.com/api/1.0/token",
+        "url": "https://venddev.vendhq.com/api/1.0/token",
         "method": "POST",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",
         },
         "data": {
-            "refresh_token": "xXwyWBeUZX0hndhEf5kiYM7iVt24KG0wqoZGLvng",
+            "refresh_token": "nBI2vAkqhF1OimwKk7X8nmUTo7xBHrvtkjPyiISj",
             "client_id": "z3MIYzmTQCm0euaQZjRL86PwZFnDAwGV",
             "client_secret": "Af6Lr1JpuYkqJD9eRdwLZIXtYwe4VQcB",
             "grant_type": "refresh_token"
@@ -353,7 +353,7 @@ window.addEventListener(
                     var settings = {
                         "async": false,
                         "crossDomain": true,
-                        "url": "https://venddevelopment.vendhq.com/api/products/" + items.product_id,
+                        "url": "https://venddev.vendhq.com/api/products/" + items.product_id,
                         "method": "GET",
                         "headers": {
                             "authorization": "Bearer " + access_token,
