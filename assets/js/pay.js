@@ -5,7 +5,7 @@
 
 /* global $, jQuery, window */
 /* eslint-env es6, quotes:single */
-
+var OriginVend = null;
 // Handles payment flow communication to Vend via the Payments API.
 // Documentation: https://docs.vendhq.com/docs/payments-api-reference
 
@@ -119,7 +119,7 @@ function GetAccessToken()
     var settings = {
         "async": false,
         "crossDomain": true,
-        "url": "https://venddev.vendhq.com/api/1.0/token",
+        "url": OriginVend + "/api/1.0/token",
         "method": "POST",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",
@@ -271,7 +271,7 @@ function sendPayment(outcome) {
         })
         setTimeout(exitStep(), 4000)
     }
-
+    OriginVend = result.origin;
     // Request /pay endpoint to send amount to terminal and wait for respnse.
     $.ajax({
         url: 'pay',
@@ -350,7 +350,7 @@ window.addEventListener(
                     var settings = {
                         "async": false,
                         "crossDomain": true,
-                        "url": "https://venddev.vendhq.com/api/products/" + items.product_id,
+                        "url": OriginVend+"/api/products/" + items.product_id,
                         "method": "GET",
                         "headers": {
                             "authorization": "Bearer " + access_token,
