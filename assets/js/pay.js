@@ -172,7 +172,7 @@ function getURLParameters() {
 
 // Check response status from the gateway, we then manipulate the payment flow
 // in Vend in response to this using the Payment API steps.
-function checkResponse(response, htmlToPrint,, qrCode, verificationUrl) {
+function checkResponse(response, htmlToPrint, qrCode, verificationUrl) {
     switch (response.status) {
         case 'ACCEPTED':
             $('#statusMessage').empty()
