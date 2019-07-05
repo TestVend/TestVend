@@ -336,7 +336,6 @@ window.addEventListener(
     'message',
     function (event) {
         console.log('received event from Vend')
-
         var data
         data = JSON.parse(event.data)
         if (data.step == "DATA") {
