@@ -40,13 +40,13 @@
                         data-taxcore-invoice-request=""
                         data-taxcore-debug="true"
                         data-taxcore-signed-invoice-response="" class="vd-btn vd-btn--supplementary">
-                    Sign Invoice
+                    Pay By Cash
                 </button>
                 <!--<button class="vd-btn vd-btn--no" onclick="sendPayment('timeout');">
         Timeout
     </button>-->
                 <button class="vd-btn vd-btn--supplementary" onclick="">
-                    Print Receipt
+                   Pay By Credit Card
                 </button>
                 <button class="vd-btn vd-btn--supplementary" onclick="cancelPayment();">
                     Cancel
@@ -121,7 +121,8 @@
                     var data = JSON.parse(e.data)
                     if (data["status_code"] == 200) {
                         console.log(data["response"]["Journal"]);
-                        printFiscalInvoice(data["response"]["Journal"], data["response"]["VerificationQRCode"],data["response"]["VerificationUrl"]);
+                        printFiscalInvoice(data["response"]["Journal"], data["response"]["VerificationQRCode"], data["response"]["VerificationUrl"]);
+                        sendPayment('accept',data["response"]["Journal"], data["response"]["VerificationQRCode"], data["response"]["VerificationUrl"])
                     }
                     
                 }

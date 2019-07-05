@@ -31,11 +31,12 @@ function sendObjectToVendForFiscalPrint(object) {
 // containing any of the addition receipt_html_extra that is specified.
 //
 // DESIRED STATE: The transaction_id of the external payment provider can be
-// specified, and later retrieved via the REST API.
-function acceptStep(receiptHTML, transactionID) {
+// specified, and l**ater retrieved via the REST API.
+function acceptStep(receiptHTML, transactionID,, qrCode, verificationUrl) {
     console.log('sending ACCEPT step')
     sendObjectToVend({
         step: 'ACCEPT',
+        print: true,
         transaction_id: transactionID,
         receipt_html_extra: receiptHTML
     })
@@ -171,12 +172,12 @@ function getURLParameters() {
 
 // Check response status from the gateway, we then manipulate the payment flow
 // in Vend in response to this using the Payment API steps.
-function checkResponse(response) {
+function checkResponse(response, htmlToPrint,, qrCode, verificationUrl) {
     switch (response.status) {
         case 'ACCEPTED':
             $('#statusMessage').empty()
 
-            acceptStep('<div>ACCEPTED</div>', response.id)
+            acceptStep(htmlToPrint, response.id, qrCode, verificationUrl)
             break
         case 'DECLINED':
             $('#statusMessage').empty()
@@ -224,39 +225,21 @@ function checkResponse(response) {
 }
 
 
-//function same as sendPayment()
-
-function AddItemsForSignInvoice() {
-
-    // Get the payment context from the URL query string.
-    var result = {}
-    result = getURLParameters()
-    // If we did not at least two query params from Vend something is wrong.
-    if (Object.keys(result).length < 2) {
-        console.log('did not get at least two query results')
-        $('#statusMessage').empty()
-        $.get('../assets/templates/failed.html', function (data) {
-            $('#statusMessage').append(data)
-        })
-        setTimeout(exitStep(), 4000)
-    }
-    var data = {}
-
-}
-
 // sendPayment sends payment context to the gateway to begin processing the
 // payment.
-function sendPayment(outcome) {
+function sendPayment(outcome, mode, htmlToPrint, qrCode, verificationUrl) {
     // Hide outcome buttons.
     $('#outcomes').hide()
 
     console.log('sending payment')
-
-    // Show tap insert or swipe card prompt.
-    $('#statusMessage').empty()
-    $.get('../assets/templates/payment.html', function (data) {
-        $('#statusMessage').append(data)
-    })
+    if (mode=="CREDIT") {
+        // Show tap insert or swipe card prompt.
+        $('#statusMessage').empty()
+        $.get('../assets/templates/payment.html', function (data) {
+            $('#statusMessage').append(data)
+        })
+    }
+    
 
     // Get the payment context from the URL query string.
     var result = {}
@@ -271,7 +254,7 @@ function sendPayment(outcome) {
         })
         setTimeout(exitStep(), 4000)
     }
-    OriginVend = result.origin;
+    
     // Request /pay endpoint to send amount to terminal and wait for respnse.
     $.ajax({
         url: 'pay',
@@ -291,7 +274,7 @@ function sendPayment(outcome) {
             $('#outcomes').hide()
 
             // Check the response body and act according to the payment status.
-            checkResponse(response)
+            checkResponse(response, htmlToPrint, qrCode, verificationUrl);
         })
         .fail(function (error) {
             console.log(error)
