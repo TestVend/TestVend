@@ -342,6 +342,7 @@ window.addEventListener(
             if (data.success == true) {
                 productData = data;
                 var product = [];
+                console.log(OriginVend);
                 var access_token = GetAccessToken();
                 for (var i = 1; i <= data.register_sale.line_items.length; i++) {
                     console.log(data.register_sale.line_items.length);
