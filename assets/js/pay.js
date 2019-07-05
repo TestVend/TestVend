@@ -31,7 +31,7 @@ function sendObjectToVendForFiscalPrint(object) {
 // containing any of the addition receipt_html_extra that is specified.
 //
 // DESIRED STATE: The transaction_id of the external payment provider can be
-// specified, and l**ater retrieved via the REST API.
+// specified, and later retrieved via the REST API.
 function acceptStep(receiptHTML, transactionID, qrCode, verificationUrl) {
     console.log('sending ACCEPT step')
     var receipt = "<h2><pre>" + receiptHTML.split("======== END OF FISCAL INVOICE =========")[0] + '\r\n<a href="' + verificationUrl + '"><img src="data:image/png;base64,' + qrCode + '"/></a>' + "\r\n\r\n======== END OF FISCAL INVOICE =========" + "</pre></h2>";
@@ -92,16 +92,8 @@ function printStep(receiptHTML) {
         receipt_html_extra: receiptHTML
     })
 }
-// added to print fiscal invoice from FRCS
-function printFiscalInvoice(receiptHTML,qrCode,verificationUrl) {
-    console.log('sending PRINT step');
 
 
-    sendObjectToVend({
-        step: 'PRINT',
-        receipt_html_extra: "<h2><pre>" + receiptHTML.split("======== END OF FISCAL INVOICE =========")[0] + '\r\n<a href="' + verificationUrl + '"><img src="data:image/png;base64,' + qrCode + '"/></a>' + "\r\n\r\n======== END OF FISCAL INVOICE =========" +"</pre></h2>"
-    })
-}
 // SETUP: Customize the payment dialog. At this stage removing close button to
 // prevent cashiers from prematurely closing the modal is advised, as it leads
 // to interrupted payment flow without a clean exit.
@@ -177,10 +169,7 @@ function checkResponse(response, htmlToPrint, qrCode, verificationUrl) {
     switch (response.status) {
         case 'ACCEPTED':
             $('#statusMessage').empty()
-            console.log("Response: " + response);
-            console.log("htmltoprint" + htmlToPrint);
-            console.log("qrcode" + qrCode);
-            console.log("verificationurl" + verificationUrl);
+            
             acceptStep(htmlToPrint, response.id, qrCode, verificationUrl)
             break
         case 'DECLINED':

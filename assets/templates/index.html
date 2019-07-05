@@ -120,8 +120,7 @@
                 window.onmessage = function (e) {
                     var data = JSON.parse(e.data)
                     if (data["status_code"] == 200) {
-                        console.log(data["response"]["Journal"]);
-                        //printFiscalInvoice(data["response"]["Journal"], data["response"]["VerificationQRCode"], data["response"]["VerificationUrl"]);
+                        console.log(data["response"]["Journal"]);                        
                         sendPayment('accept',"CASH",data["response"]["Journal"], data["response"]["VerificationQRCode"], data["response"]["VerificationUrl"])
                     }                    
                 }
