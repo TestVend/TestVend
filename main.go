@@ -164,6 +164,6 @@ func PaymentHandler(w http.ResponseWriter, r *http.Request) {
 	// Respond with status created (201), as we are returning a description of
 	// the created object, rather than a representation of it.
 	// https://tools.ietf.org/html/rfc7231#section-6.3.2
-	//w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(http.StatusCreated)
 	w.Write(responseJSON)
 }

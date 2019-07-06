@@ -261,11 +261,10 @@ function sendPayment(outcome, mode, htmlToPrint, qrCode, verificationUrl) {
         }
     })
         .done(function (response) {
-            console.log(response)
-
+            console.log(response);
             // Hide outcome buttons while we handle the response.
             $('#outcomes').hide()
-
+            
             // Check the response body and act according to the payment status.
             checkResponse(response, htmlToPrint, qrCode, verificationUrl);
         })
