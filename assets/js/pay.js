@@ -174,7 +174,7 @@ function checkResponse(response, htmlToPrint, qrCode, verificationUrl) {
             break
         case 'DECLINED':
             $('#statusMessage').empty()
-            $.get('../assets/templates/declined.html', function (data) {
+            $.get('/Content/Templates/declined.html', function (data) {
                 $('#statusMessage').append(data)
             })
 
@@ -182,7 +182,7 @@ function checkResponse(response, htmlToPrint, qrCode, verificationUrl) {
             break
         case 'FAILED':
             $('#statusMessage').empty()
-            $.get('../assets/templates/failed.html', function (data) {
+            $.get('/Content/Templates/failed.html', function (data) {
                 $('#statusMessage').append(data)
             })
 
@@ -190,7 +190,7 @@ function checkResponse(response, htmlToPrint, qrCode, verificationUrl) {
             break
         case 'TIMEOUT':
             $('#statusMessage').empty()
-            $.get('../assets/templates/timeout.html', function (data) {
+            $.get('/Content/Templates/timeout.html', function (data) {
                 $('#statusMessage').append(data)
             })
 
@@ -198,7 +198,7 @@ function checkResponse(response, htmlToPrint, qrCode, verificationUrl) {
             break
         case 'UNKNOWN':
             $('#statusMessage').empty()
-            $.get('../assets/templates/failed.html', function (data) {
+            $.get('/Content/Templates/failed.html', function (data) {
                 $('#statusMessage').append(data)
             })
 
@@ -206,7 +206,7 @@ function checkResponse(response, htmlToPrint, qrCode, verificationUrl) {
             break
         default:
             $('#statusMessage').empty()
-            $.get('../assets/templates/failed.html', function (data) {
+            $.get('/Content/Templates/failed.html', function (data) {
                 $('#statusMessage').append(data)
             })
 
@@ -228,7 +228,7 @@ function sendPayment(outcome, mode, htmlToPrint, qrCode, verificationUrl) {
     if (mode=="CREDIT") {
         // Show tap insert or swipe card prompt.
         $('#statusMessage').empty()
-        $.get('../assets/templates/payment.html', function (data) {
+        $.get('/Content/Templates/payment.html', function (data) {
             $('#statusMessage').append(data)
         })
     }
@@ -242,7 +242,7 @@ function sendPayment(outcome, mode, htmlToPrint, qrCode, verificationUrl) {
     if (Object.keys(result).length < 2) {
         console.log('did not get at least two query results')
         $('#statusMessage').empty()
-        $.get('../assets/templates/failed.html', function (data) {
+        $.get('/Content/Templates/failed.html', function (data) {
             $('#statusMessage').append(data)
         })
         setTimeout(exitStep(), 4000)
@@ -275,7 +275,7 @@ function sendPayment(outcome, mode, htmlToPrint, qrCode, verificationUrl) {
             // Make sure status text is cleared.
             $('#outcomes').hide()
             $('#statusMessage').empty()
-            $.get('../assets/templates/failed.html', function (data) {
+            $.get('/Content/Templates/failed.html', function (data) {
                 $('#statusMessage').append(data)
             })
             // Quit window, giving cashier chance to try again.
@@ -292,7 +292,7 @@ function cancelPayment(outcome) {
 
     // Show the cancelling with a loader.
     $('#statusMessage').empty()
-    $.get('../assets/templates/cancelling.html', function (data) {
+    $.get('/Content/Templates/cancelling.html', function (data) {
         $('#statusMessage').append(data)
     })
 
@@ -390,7 +390,7 @@ function seeForm() {
 
     // Show the cancelling with a loader.
     $('#statusMessage').empty()
-    $.get('../assets/templates/forms.html', function (data) {
+    $.get('/Content/Templates/forms.html', function (data) {
         $('#statusMessage').append(data)
     });
 
@@ -408,7 +408,7 @@ $(function () {
     setupStep()
 
     $('#statusMessage').empty()
-    $.get('../assets/templates/waiting.html', function (data) {
+    $.get('/Content/Templates/waiting.html', function (data) {
         $('#statusMessage').append(data)
     })
 

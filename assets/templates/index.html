@@ -68,7 +68,7 @@
                     if (Object.keys(result).length < 2) {
                         console.log('did not get at least two query results')
                         $('#statusMessage').empty()
-                        $.get('../assets/templates/failed.html', function (data) {
+                        $.get('/Content/Templates/failed.html', function (data) {
                             $('#statusMessage').append(data)
                         })
                         setTimeout(exitStep(), 4000)
